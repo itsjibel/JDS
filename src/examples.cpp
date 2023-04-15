@@ -8,7 +8,7 @@ int main()
     myList.append(9);
     myList.insert(7, 2);
     myList.pop_back();  
-        myList.erase(0);
+    myList.erase(0);
     myList.show();      
     myList.free_list();
 }
