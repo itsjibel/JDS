@@ -1,7 +1,7 @@
 #include <iostream>
 using std::cout;
 
-class List
+class LL_OW
 {
     private:
 	struct node
