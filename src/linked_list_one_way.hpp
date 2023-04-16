@@ -207,4 +207,10 @@ class LL_OW
 			for (int i=1; i<values.size(); i++)
 				append(values.at(i));
 		}
+
+		// Destructor
+		virtual ~LL_OW()
+		{
+			free_list();
+		}
 };

@@ -10,9 +10,7 @@ int main()
     myList.insert(7, 2);
     myList.pop_back();
     myList.erase(0);
-    cout<<myList.at(0)<<"\n";
-    cout<<myList.at(1)<<"\n";
-    cout<<myList.at(2)<<"\n";
-    cout<<myList.size()<<"\n";
+    for (int i=0; i<myList.size(); i++)
+        cout<<myList.at(i)<<"\n";
     myList.free_list();
 }
