@@ -1,4 +1,6 @@
 #include <stdlib.h>
+#include <vector>
+using std::vector;
 
 class LL_OW
 {
@@ -16,6 +18,9 @@ class LL_OW
     public:
 		void create_node(int val)
 		{
+			if (start != NULL)
+				return;
+
 			struct node *n;
 			n = new(struct node);
 			n->data = val;
@@ -186,5 +191,20 @@ class LL_OW
 				list_size--;
 				d = temp;
 			}
+		}
+
+		// Constructors
+		LL_OW() {}
+
+		LL_OW(int data)
+		{
+			create_node(data);
+		}
+
+		LL_OW(vector<int> values)
+		{
+			create_node(values.front());
+			for (int i=1; i<values.size(); i++)
+				append(values.at(i));
 		}
 };
