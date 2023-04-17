@@ -1,2 +1,3 @@
-src/examples
+src/one-way-linked-list/examples
+src/double-way-linked-list/examples
 .vscode/
