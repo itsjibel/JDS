@@ -8,11 +8,10 @@ class LL_OW
 		struct node
 		{
 			int data;
-			struct node *next;
-		};
+			node *next;
+		} *start;
 
     protected:
-		struct node *start;
 		int list_size = 0;
 
     public:
@@ -21,8 +20,8 @@ class LL_OW
 			if (start != NULL)
 				return;
 
-			struct node *n;
-			n = new(struct node);
+			node *n;
+			n = new(node);
 			n->data = val;
 			n->next = NULL;
 			start = n;
@@ -33,11 +32,11 @@ class LL_OW
 		{
 			if (start == NULL)
 				return;
-			struct node *a;
-			a = new(struct node);
+			node *a;
+			a = new(node);
 			a->data = val;
 			a->next = NULL;
-			struct node *p = start;
+			node *p = start;
 			while(1)
 			{
 				if (p->next == NULL)
@@ -54,8 +53,8 @@ class LL_OW
 		{
 			if (start == NULL)
 				return;
-			struct node *p;
-			p = new(struct node);
+			node *p;
+			p = new(node);
 			p->data = val;
 			p->next = start;
 			start = p;
@@ -67,11 +66,11 @@ class LL_OW
 			if (start == NULL || index < 0)
 				return;
 
-			struct node *i;
-			i = new(struct node);
+			node *i;
+			i = new(node);
 			i->data = val;
-			struct node *p = start;
-			struct node *temp;
+			node *p = start;
+			node *temp;
 			int counter=0;
 			while (counter < index)
 			{
@@ -95,7 +94,7 @@ class LL_OW
 		{
 			if (start == NULL)
 				return;
-			struct node *b = start, *temp;
+			node *b = start, *temp;
 			if (b->next == NULL)
 			{
 				start = NULL;
@@ -123,7 +122,7 @@ class LL_OW
 			if (start == NULL || index < 0)
 				return;
 
-			struct node *d = start;
+			node *d = start;
 			if (index == 0)
 			{
 				start = d->next;
@@ -131,7 +130,7 @@ class LL_OW
 				list_size--;
 				return;
 			}
-			struct node *temp;
+			node *temp;
 			int counter=0;
 			while(1)
 			{
@@ -155,7 +154,7 @@ class LL_OW
 			if (start == 0)
 				return 0;
 
-			struct node *p;
+			node *p;
 			int counter=0;
 			for (p = start; p != NULL; p = p->next)
 			{
@@ -178,10 +177,10 @@ class LL_OW
 		{
 			if (start == NULL)
 				return;
-			struct node *d = start;
+			node *d = start;
 			while(1)
 			{
-				struct node *temp = d->next;
+				node *temp = d->next;
 				if (temp == NULL)
 				{
 					start = NULL;
