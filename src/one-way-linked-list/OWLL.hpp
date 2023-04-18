@@ -190,6 +190,7 @@ class LL_OW
 				list_size--;
 				d = temp;
 			}
+			start = NULL;
 		}
 
 		// Constructors
