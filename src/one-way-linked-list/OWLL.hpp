@@ -63,7 +63,7 @@ class LL_OW
 
 		void insert(int val, int index)
 		{
-			if (start == NULL || index < 0)
+			if (start == NULL || index < 0 || index >= list_size)
 				return;
 
 			node *i;
