@@ -77,6 +77,70 @@ class LL_DW
 			start = NULL;
 		}
 
+		void pop(int val)
+		{
+			if (start == NULL)
+				return;
+
+			node *p;
+			p = new(node);
+			p->data = val;
+			p->next = start;
+			p->prev = NULL;
+			start->prev = p;
+			start = p;
+			list_size++;
+		}
+
+		void insert(int val, int index)
+		{
+			if (start == NULL || index < 0 || index >= list_size)
+				return;
+
+			node *i;
+			i = new(node);
+			i->data = val;
+			node *p = start;
+			node *temp;
+			int counter=0;
+			while (counter < index)
+			{
+				temp = p;
+				p = p->next;
+				if (p == NULL)
+					break;
+				counter++;
+			}
+			i->next = p;
+			p->prev = i;
+
+			if (counter == 0)
+				start = i;
+			else
+				temp->next = i;
+
+			list_size++;
+		}
+
+		int at(int index)
+		{
+			if (start == NULL || index < 0 || index >= list_size)
+				return 0;
+
+			node *p;
+			int counter=0;
+			for (p = start; p != NULL; p = p->next)
+			{
+				if (index == counter)
+				{
+					return p->data;
+				}
+				counter++;
+			}
+
+			return 0;
+		}
+
 		// Constructors
 		LL_DW() {}
 
