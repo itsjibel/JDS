@@ -12,5 +12,4 @@ int main()
     myList.erase(0);
     for (int i=0; i<myList.size(); i++)
         cout<<myList.at(i)<<"\n";
-    myList.free_list();
 }
