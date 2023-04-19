@@ -151,7 +151,7 @@ class LL_OW
 
 		int at(int index)
 		{
-			if (start == 0)
+			if (start == NULL || index < 0 || index >= list_size)
 				return 0;
 
 			node *p;
