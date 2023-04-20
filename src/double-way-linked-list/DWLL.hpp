@@ -52,11 +52,6 @@ class LL_DW
 			}
 		}
 
-		int size()
-		{
-			return list_size;
-		}
-
 		void free_list()
 		{
 			if (start == NULL)
@@ -122,6 +117,66 @@ class LL_DW
 			list_size++;
 		}
 
+		void pop_back()
+		{
+			if (start == NULL)
+				return;
+			node *b = start, *temp;
+			if (b->next == NULL)
+			{
+				start = NULL;
+				delete b;
+				list_size--;
+				return;
+			}
+
+			while (1)
+			{
+				if (b->next == NULL)
+				{
+					temp->next = NULL;
+					delete b;
+					list_size--;
+					return;
+				}
+				temp = b;
+				b = b->next;
+			}
+		}
+
+		void erase(int index)
+		{
+			if (start == NULL || index < 0 || index >= list_size)
+				return;
+
+			node *d = start;
+			if (index == 0)
+			{
+				start->next->prev = NULL;
+				start = start->next;
+				delete d;
+				list_size--;
+				return;
+			}
+			node *temp;
+			int counter=0;
+			while(1)
+			{
+				if (counter == index)
+				{
+					if (index != list_size - 1)
+						d->next->prev = temp;
+					temp->next = d->next;
+					delete d;
+					list_size--;
+					return;
+				}
+				temp = d;
+				d = d->next;
+				counter++;
+			}
+		}
+
 		int at(int index)
 		{
 			if (start == NULL || index < 0 || index >= list_size)
@@ -139,6 +194,11 @@ class LL_DW
 			}
 
 			return 0;
+		}
+
+		int size()
+		{
+			return list_size;
 		}
 
 		// Constructors
