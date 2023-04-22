@@ -8,8 +8,7 @@ class LL_DW
 		struct node
 		{
 			int data;
-			node *next;
-			node *prev;
+			node *next, *prev;
 		} *start;
 
     protected:
@@ -34,11 +33,10 @@ class LL_DW
 		{
 			if (start == NULL)
 				return;
-			node *a;
+			node *a, *p = start;
 			a = new(node);
 			a->data = val;
 			a->next = NULL;
-			node *p = start;
 			while(1)
 			{
 				if (p->next == NULL)
@@ -50,26 +48,6 @@ class LL_DW
 				}
 				p = p->next;
 			}
-		}
-
-		void free_list()
-		{
-			if (start == NULL)
-				return;
-			node *d = start;
-			while(1)
-			{
-				node *temp = d->next;
-				if (temp == NULL)
-				{
-					start = NULL;
-					return;
-				}
-				delete d;
-				list_size--;
-				d = temp;
-			}
-			start = NULL;
 		}
 
 		void pop(int val)
@@ -92,11 +70,9 @@ class LL_DW
 			if (start == NULL || index < 0 || index >= list_size)
 				return;
 
-			node *i;
+			node *i, *p = start, *temp;
 			i = new(node);
 			i->data = val;
-			node *p = start;
-			node *temp;
 			int counter=0;
 			while (counter < index)
 			{
@@ -149,7 +125,7 @@ class LL_DW
 			if (start == NULL || index < 0 || index >= list_size)
 				return;
 
-			node *d = start;
+			node *d = start, *temp;
 			if (index == 0)
 			{
 				start->next->prev = NULL;
@@ -158,7 +134,7 @@ class LL_DW
 				list_size--;
 				return;
 			}
-			node *temp;
+
 			int counter=0;
 			while(1)
 			{
@@ -175,6 +151,19 @@ class LL_DW
 				d = d->next;
 				counter++;
 			}
+		}
+
+		void concat(LL_DW &list2)
+		{
+			if (list2.start == NULL || start == NULL)
+				return;
+
+			node *p = start;
+			while (p->next != NULL)
+				p = p->next;
+			p->next = list2.start;
+			list2.start->prev = p;
+			list_size += list2.list_size;
 		}
 
 		int at(int index)
@@ -199,6 +188,30 @@ class LL_DW
 		int size()
 		{
 			return list_size;
+		}
+
+		void free_list()
+		{
+			if (start == NULL)
+				return;
+
+			node *d = start, *temp;
+			if (d->prev != NULL)
+				d->prev->next = NULL;
+
+			while(1)
+			{
+				temp = d->next;
+				if (temp == NULL)
+				{
+					start = NULL;
+					return;
+				}
+				delete d;
+				list_size--;
+				d = temp;
+			}
+			start = NULL;
 		}
 
 		// Constructors
