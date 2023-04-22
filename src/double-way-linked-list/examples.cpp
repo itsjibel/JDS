@@ -10,7 +10,11 @@ int main()
     myList.insert(7, 2);
     myList.erase(5);
     myList.pop_back();
+    LL_DW myList2({4, 5, 6});
+    myList.concat(myList2);
+
     for (int i=0; i<myList.size(); i++)
-        cout<<myList.at(i)<<"\n";
+        cout<<myList.at(i)<<", ";
+    cout<<"\n";
     return 0;
 }
