@@ -166,6 +166,22 @@ class LL_DW
 			list_size += list2.list_size;
 		}
 
+		void reverse()
+		{
+			if (start == NULL)
+				return;
+			node *p = start, *p2, *temp;
+			while (p2 != NULL)
+			{
+				temp = p;
+				p2 = p->next;
+				p->next = p->prev;
+				p->prev = p2;
+				p = p2;
+			}
+			start = temp;
+		}
+
 		int at(int index)
 		{
 			if (start == NULL || index < 0 || index >= list_size)

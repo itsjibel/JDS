@@ -16,5 +16,9 @@ int main()
     for (int i=0; i<myList.size(); i++)
         cout<<myList.at(i)<<", ";
     cout<<"\n";
+    myList.reverse();
+    for (int i=0; i<myList.size(); i++)
+        cout<<myList.at(i)<<", ";
+    cout<<"\n";
     return 0;
 }
