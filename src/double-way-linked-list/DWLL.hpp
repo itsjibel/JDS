@@ -2,7 +2,7 @@
 #include <vector>
 using std::vector;
 
-class LL_DW
+class DWLL
 {
     private:
 		struct node
@@ -153,7 +153,7 @@ class LL_DW
 			}
 		}
 
-		void concat(LL_DW &list2)
+		void concat(DWLL &list2)
 		{
 			if (list2.start == NULL || start == NULL)
 				return;
@@ -231,14 +231,14 @@ class LL_DW
 		}
 
 		// Constructors
-		LL_DW() {}
+		DWLL() {}
 
-		LL_DW(int data)
+		DWLL(int data)
 		{
 			create_node(data);
 		}
 
-		LL_DW(vector<int> values)
+		DWLL(vector<int> values)
 		{
 			create_node(values.front());
 			for (int i=1; i<values.size(); i++)
@@ -246,7 +246,7 @@ class LL_DW
 		}
 
 		// Destructor
-		virtual ~LL_DW()
+		virtual ~DWLL()
 		{
 			free_list();
 		}
