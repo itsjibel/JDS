@@ -2,7 +2,7 @@
 #include <vector>
 using std::vector;
 
-class LL_OW
+class OWLL
 {
     private:
 		struct node
@@ -194,14 +194,14 @@ class LL_OW
 		}
 
 		// Constructors
-		LL_OW() {}
+		OWLL() {}
 
-		LL_OW(int data)
+		OWLL(int data)
 		{
 			create_node(data);
 		}
 
-		LL_OW(vector<int> values)
+		OWLL(vector<int> values)
 		{
 			create_node(values.front());
 			for (int i=1; i<values.size(); i++)
@@ -209,7 +209,7 @@ class LL_OW
 		}
 
 		// Destructor
-		virtual ~LL_OW()
+		virtual ~OWLL()
 		{
 			free_list();
 		}
