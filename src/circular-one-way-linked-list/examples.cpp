@@ -4,8 +4,14 @@ using std::cout;
 
 int main()
 {
-    COWLL myList({5, 4, 6});
-    for (int i=0; i<myList.size(); i++)
-        cout<<myList.at(i)<<"\n";
+    COWLL myList({4, 5, 6, 7});
+    myList.pop(3);
+    myList.insert(8, 4);
+    myList.pop_back();
+    myList.erase(4);
+    cout<<"["<<myList.at(0);
+    for (int i=1; i<myList.size(); i++)
+        cout<<" -> "<<myList.at(i);
+    cout<<"]\n";
     return 0;
 }
