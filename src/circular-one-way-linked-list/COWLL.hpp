@@ -4,17 +4,15 @@ using std::vector;
 
 class COWLL
 {
-    private:
-
-    protected:
+    public:
 		int list_size = 0;
 
-    public:
 		struct node
 		{
 			int data;
 			node *next, *prev;
 		} *start;
+
         void create_node(int val)
 		{
 			if (start != NULL)
@@ -158,6 +156,36 @@ class COWLL
 				if (d == start)
 					return;
 			}
+		}
+
+		node *begin()
+		{
+			return start;
+		}
+
+		node *break_list()
+		{
+			node *new_head;
+			if (start == NULL || list_size == 1)
+				return NULL;
+
+			node *p1 = start, *p2 = start;
+			while (p2->next != start)
+			{
+				if (p2->next->next != start)
+				{
+					p2 = p2->next->next;
+					p1 = p1->next;
+				} else if (p2->next != start) {
+					p2 = p2->next;
+				}
+			}
+			
+			new_head = p1->next;
+			p2->next = new_head;
+			p1->next = start;
+
+			return new_head;
 		}
 
         int at(int index)
