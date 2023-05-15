@@ -62,3 +62,17 @@ int insert(int arr[], int size, int index, int key)
     arr[index] = key;
     return index;
 }
+
+int inserts(int arr[], int size, int index, int key)
+{
+    if (index >= size)
+        return -1;
+
+    int i;
+    for (i=index - 1; (i>=0 && arr[i]>key); i--)
+        arr[i+1] = arr[i];
+
+    arr[i+1] = key;
+
+    return (index + 1);
+}
