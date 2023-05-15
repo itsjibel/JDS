@@ -10,7 +10,7 @@ int main()
     cout<<ibsearch(a, 0, sizeof(a)/4, 8)<<'\n';
     bdel(a, sizeof(a)/4, 8);
     cout<<ibsearch(a, 0, sizeof(a)/4, 8)<<'\n';
-    del(a, sizeof(a)/4, 5);
+    ldel(a, sizeof(a)/4, 5);
     cout<<bsearch(a, 0, sizeof(a)/4, 5)<<'\n';
 
     return 0;

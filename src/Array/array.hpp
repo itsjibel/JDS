@@ -43,7 +43,7 @@ int bdel(int arr[], int size, int key)
     return size - 1;
 }
 
-int del(int arr[], int size, int key)
+int ldel(int arr[], int size, int key)
 {
     int pos = lsearch(arr, size - 1, key);
     if (pos == -1)
