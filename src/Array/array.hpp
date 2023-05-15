@@ -31,7 +31,7 @@ int ibsearch(int arr[], int low, int high, int key)
     return -1;
 }
 
-int sdel(int arr[], int size, int key)
+int bdel(int arr[], int size, int key)
 {
     int pos = bsearch(arr, 0, size - 1, key);
     if (pos == -1)
