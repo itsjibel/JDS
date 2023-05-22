@@ -2,18 +2,18 @@
 #include <vector>
 using std::vector;
 
-class COWLL
+template <typename T> class COWLL
 {
     public:
-		int list_size = 0;
+		unsigned long int list_size = 0;
 
 		struct node
 		{
-			int data;
+			T data;
 			node *next, *prev;
 		} *start;
 
-        void create_node(int val)
+        void create_node(T val)
 		{
 			if (start != NULL)
 				return;
@@ -26,7 +26,7 @@ class COWLL
 			list_size++;
 		}
 
-		void append(int val)
+		void append(T val)
 		{
 			if (start == NULL)
 				return;
@@ -47,7 +47,7 @@ class COWLL
 			}
 		}
 
-		void pop(int val)
+		void pop(T val)
 		{
 			if (start == NULL)
 				return;
@@ -63,7 +63,7 @@ class COWLL
 			list_size++;
 		}
 
-		void insert(int val, int index)
+		void insert(T val, unsigned long int index)
 		{
 			if (start == NULL || index < 0 || index > list_size)
 				return;
@@ -72,7 +72,7 @@ class COWLL
 			i = new(node);
 			i->data = val;
 			node *p = start, *temp;
-			int counter=0;
+			unsigned long int counter=0;
 			while (counter < index)
 			{
 				temp = p;
@@ -119,7 +119,7 @@ class COWLL
 			}
 		}
 
-		void erase(int index)
+		void erase(unsigned long int index)
 		{
 			if (start == NULL || index < 0)
 				return;
@@ -138,7 +138,7 @@ class COWLL
 			}
 
 			node *temp;
-			int counter=0;
+			unsigned long counter=0;
 			while(1)
 			{
 				if (counter == index)
@@ -156,11 +156,6 @@ class COWLL
 				if (d == start)
 					return;
 			}
-		}
-
-		node *begin()
-		{
-			return start;
 		}
 
 		node *break_list()
@@ -188,7 +183,7 @@ class COWLL
 			return new_head;
 		}
 
-        int at(int index)
+        T at(unsigned long int index)
 		{
 			if (start == NULL || index < 0 || index >= list_size)
 				return 0;
@@ -212,7 +207,7 @@ class COWLL
 			return 0;
 		}
 
-        int size()
+        T size()
 		{
 			return list_size;
 		}
@@ -240,15 +235,15 @@ class COWLL
 		// Constructors
 		COWLL() {}
 
-		COWLL(int data)
+		COWLL(T data)
 		{
 			create_node(data);
 		}
 
-		COWLL(vector<int> values)
+		COWLL(vector<T> values)
 		{
 			create_node(values.front());
-			for (int i=1; i<values.size(); i++)
+			for (T i=1; i<values.size(); i++)
 				append(values.at(i));
 		}
 
