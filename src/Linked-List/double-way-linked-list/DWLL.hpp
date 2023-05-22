@@ -1,21 +1,20 @@
 #include <stdlib.h>
 #include <vector>
-using std::vector;
 
-class DWLL
+template <typename T> class DWLL
 {
     private:
 		struct node
 		{
-			int data;
+			T data;
 			node *next, *prev;
 		} *start;
 
     protected:
-		int list_size = 0;
+		unsigned long int list_size = 0;
 
     public:
-		void create_node(int val)
+		void create_node(T val)
 		{
 			if (start != NULL)
 				return;
@@ -29,7 +28,7 @@ class DWLL
 			list_size++;
 		}
 
-		void append(int val)
+		void append(T val)
 		{
 			if (start == NULL)
 				return;
@@ -50,7 +49,7 @@ class DWLL
 			}
 		}
 
-		void pop(int val)
+		void pop(T val)
 		{
 			if (start == NULL)
 				return;
@@ -65,7 +64,7 @@ class DWLL
 			list_size++;
 		}
 
-		void insert(int val, int index)
+		void insert(T val, unsigned long int index)
 		{
 			if (start == NULL || index < 0 || index >= list_size)
 				return;
@@ -73,7 +72,7 @@ class DWLL
 			node *i, *p = start, *temp;
 			i = new(node);
 			i->data = val;
-			int counter=0;
+			T counter=0;
 			while (counter < index)
 			{
 				temp = p;
@@ -120,7 +119,7 @@ class DWLL
 			}
 		}
 
-		void erase(int index)
+		void erase(unsigned long int index)
 		{
 			if (start == NULL || index < 0 || index >= list_size)
 				return;
@@ -135,7 +134,7 @@ class DWLL
 				return;
 			}
 
-			int counter=0;
+			unsigned long int counter=0;
 			while(1)
 			{
 				if (counter == index)
@@ -182,13 +181,13 @@ class DWLL
 			start = temp;
 		}
 
-		int at(int index)
+		T at(unsigned long int index)
 		{
 			if (start == NULL || index < 0 || index >= list_size)
 				return 0;
 
 			node *p;
-			int counter=0;
+			unsigned long int counter=0;
 			for (p = start; p != NULL; p = p->next)
 			{
 				if (index == counter)
@@ -201,7 +200,7 @@ class DWLL
 			return 0;
 		}
 
-		int size()
+		unsigned long int size()
 		{
 			return list_size;
 		}
@@ -233,20 +232,20 @@ class DWLL
 		// Constructors
 		DWLL() {}
 
-		DWLL(int data)
+		DWLL(T data)
 		{
 			create_node(data);
 		}
 
-		DWLL(vector<int> values)
+		DWLL(std::vector<T> values)
 		{
 			create_node(values.front());
-			for (int i=1; i<values.size(); i++)
+			for (T i=1; i<values.size(); i++)
 				append(values.at(i));
 		}
 
 		// Destructor
-		virtual ~DWLL()
+		~DWLL()
 		{
 			free_list();
 		}
