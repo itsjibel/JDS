@@ -1,21 +1,20 @@
 #include <stdlib.h>
 #include <vector>
-using std::vector;
 
-class OWLL
+template <typename T> class OWLL
 {
     private:
 		struct node
 		{
-			int data;
+			T data;
 			node *next;
 		} *start;
 
     protected:
-		int list_size = 0;
+		unsigned long int list_size = 0;
 
     public:
-		void create_node(int val)
+		void create_node(T val)
 		{
 			if (start != NULL)
 				return;
@@ -28,7 +27,7 @@ class OWLL
 			list_size++;
 		}
 
-		void append(int val)
+		void append(T val)
 		{
 			if (start == NULL)
 				return;
@@ -49,7 +48,7 @@ class OWLL
 			}
 		}
 
-		void pop(int val)
+		void pop(T val)
 		{
 			if (start == NULL)
 				return;
@@ -61,7 +60,7 @@ class OWLL
 			list_size++;
 		}
 
-		void insert(int val, int index)
+		void insert(T val, unsigned long int index)
 		{
 			if (start == NULL || index < 0 || index >= list_size)
 				return;
@@ -117,7 +116,7 @@ class OWLL
 			}
 		}
 
-		void erase(int index)
+		void erase(unsigned long int index)
 		{
 			if (start == NULL || index < 0)
 				return;
@@ -149,7 +148,7 @@ class OWLL
 			}
 		}
 
-		int at(int index)
+		T at(unsigned long int index)
 		{
 			if (start == NULL || index < 0 || index >= list_size)
 				return 0;
@@ -168,7 +167,7 @@ class OWLL
 			return 0;
 		}
 
-		int size()
+		unsigned long int size()
 		{
 			return list_size;
 		}
@@ -196,12 +195,12 @@ class OWLL
 		// Constructors
 		OWLL() {}
 
-		OWLL(int data)
+		OWLL(T data)
 		{
 			create_node(data);
 		}
 
-		OWLL(vector<int> values)
+		OWLL(std::vector<T> values)
 		{
 			create_node(values.front());
 			for (int i=1; i<values.size(); i++)
@@ -209,7 +208,7 @@ class OWLL
 		}
 
 		// Destructor
-		virtual ~OWLL()
+		~OWLL()
 		{
 			free_list();
 		}

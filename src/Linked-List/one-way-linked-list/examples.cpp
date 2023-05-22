@@ -1,16 +1,16 @@
 #include "OWLL.hpp"
 #include <iostream>
-using std::cout;
 
 int main()
 {
-    OWLL myList({5, 4, 6});
-    myList.pop(6);
-    myList.append(9);
-    myList.insert(7, 2);
+    OWLL<std::string> myList({"Jack", "Skyler", "Hank", "Jibel"});
+    myList.pop("Saul");
+    myList.append("Walter");
+    myList.insert("Jesse", 2);
     myList.pop_back();
-    myList.erase(0);
+    myList.erase(4);
+    myList.erase(1);
     for (int i=0; i<myList.size(); i++)
-        cout<<myList.at(i)<<"\n";
+        std::cout<<myList.at(i)<<"\n";
     return 0;
 }
