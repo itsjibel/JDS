@@ -5,9 +5,9 @@ template <typename T> class Queue
         long long int front;
         long long int rear;
         long long int _size;
+        unsigned long long int capacity;
 
     public:
-        unsigned long long int capacity;
         Queue(unsigned long long int c) : capacity{c}
         {
             queue = new T[capacity];
@@ -40,6 +40,15 @@ template <typename T> class Queue
             return true;
         }
 
+        bool del()
+        {
+            if (is_empty())
+                return false;
+            queue[rear++] = 0;
+            _size--;
+            return true;
+        }
+
         T at(unsigned long long int i) const
         {
             return queue[i];
@@ -48,5 +57,12 @@ template <typename T> class Queue
         unsigned long long int size() const
         {
             return capacity;
+        }
+
+        void clear()
+        {
+            _size = rear = front = 0;
+            for (int i=0; i<capacity; i++)
+                queue[i] = 0;
         }
 };
