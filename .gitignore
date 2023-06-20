@@ -4,4 +4,5 @@ src/Linked-List/circular-one-way-linked-list/examples
 src/Queue/Queue/examples
 src/Queue/Circular-Queue/examples
 src/Array/examples
+src/Stack/examples
 .vscode/
