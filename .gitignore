@@ -1,8 +1,8 @@
-src/Linked-List/one-way-linked-list/examples
-src/Linked-List/double-way-linked-list/examples
-src/Linked-List/circular-one-way-linked-list/examples
-src/Queue/Queue/examples
-src/Queue/Circular-Queue/examples
-src/Array/examples
-src/Stack/examples
+examples/array
+examples/circular-queue
+examples/cowll
+examples/dwll
+examples/owll
+examples/queue
+examples/stack
 .vscode/

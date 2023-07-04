@@ -1,5 +1,5 @@
 #include <iostream>
-#include "stack.hpp"
+#include "../JDS/Stack/stack.hpp"
 
 int main()
 {

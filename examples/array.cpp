@@ -1,5 +1,5 @@
 #include <iostream>
-#include "array.hpp"
+#include "../JDS/Array/array.hpp" 
 using std::cout;
 
 int main()

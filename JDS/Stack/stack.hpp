@@ -1,4 +1,3 @@
-#include <string>
 template <typename T> class Stack
 {
     private:
