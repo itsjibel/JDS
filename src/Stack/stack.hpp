@@ -1,3 +1,4 @@
+#include <string>
 template <typename T> class Stack
 {
     private:
@@ -83,48 +84,77 @@ namespace stack
 
     std::string infix2postfix(std::string& s)
     {
-        Stack<char> st(s.size()); //For stack operations, we are using C++ built in stack
+        Stack<char> st(s.size());
         std::string ans = "";
 
         for (int i=0; i<s.length(); i++)
         {
             char ch = s[i];
 
-            // If the current character is an operand, add it to our answer string.
-            if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= '0' && ch <= '9'))
-                ans += ch; // Append the current character of string in our answer
+            if (ch >= '0' && ch <= '9')
+            {
+                while (ch >= '0' && ch <= '9')
+                {
+                    ans += ch;
+                    if (i<s.length())
+                        ch = s[++i];
+                    else
+                        break;
+                }
+                ans += '$';
+            }
 
-            // If the current character of string is an '(', push it to the stack.
-            else if (ch == '(')
+            if (ch == '(')
                 st.push('(');
-
-            // If the current character of string is an ')', append the top character of stack in our answer string
-            // and pop that top character from the stack until an '(' is encountered.
             else if (ch == ')') {
                 while (st.at_top() != '(')
                 {
-                    ans += st.at_top(); // Append the top character of stack in our answer
+                    ans += st.at_top();
                     st.pull();
                 }
                 st.pull();
-            }
-
-            // If an operator is scanned
-            else {
+            } else {
                 while (!st.is_empty() && prec(s[i]) <= prec(st.at_top())) {
                     ans += st.at_top();
                     st.pull();
                 }
-                st.push(ch); // Push the current character of string in stack
+                st.push(ch);
             }
         }
 
-        // Pop all the remaining elements from the stack
-        while (!st.is_empty()) {
+        while (!st.is_empty())
+        {
             ans += st.at_top();
             st.pull();
         }
-
         return ans;
+    }
+
+    int calculate_postfix(std::string& s)
+    {
+        int a, b, i;
+        Stack<int> st(s.size());
+        for (i=0; s[i]; ++i)
+        {
+            std::string number;
+            while (s[i] != '$' && s[i] != '+' && s[i] != '-' && s[i] != '*' && s[i] != '/')
+                number.push_back(s[i++]);
+            if (!number.empty())
+                st.push(std::stoi(number));
+
+            if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/')
+            {
+                a = st.pull();
+                b = st.pull();
+                switch (s[i])
+                {
+                    case '+': st.push(b + a); break;
+                    case '-': st.push(b - a); break;
+                    case '*': st.push(b * a); break;
+                    case '/': st.push(b / a); break;
+                }
+            }
+        }
+        return st.pull();
     }
 }
