@@ -12,7 +12,10 @@ int main()
     myStack.pull();
     myStack.pull();
     myStack.pull();
-    for (int i=0; i<myStack.size(); i++)
+    for (int i=0; i<=myStack.top_val(); i++)
         std::cout<<myStack.at(i)<<std::endl;
+    
+    std::string str("a+b/(c*d+e)-f^g");
+    std::cout<<stack::infix2postfix(str)<<std::endl;
     return 0;
 }
