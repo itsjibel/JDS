@@ -15,7 +15,7 @@ int main()
     for (int i=0; i<=myStack.top_val(); i++)
         std::cout<<myStack.at(i)<<std::endl;
     
-    std::string str("(25+3)*4+65-(98-3)");
+    std::string str("(256155+3)*4/65-(98-3)");
     std::string postfix_result = stack::infix2postfix(str);
     std::cout<<stack::calculate_postfix(postfix_result)<<std::endl;
     return 0;

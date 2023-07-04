@@ -1,3 +1,5 @@
+#include "jmp.hpp"
+
 template <typename T> class Stack
 {
     private:
@@ -129,17 +131,17 @@ namespace stack
         return ans;
     }
 
-    int calculate_postfix(std::string& s)
+    jmp calculate_postfix(std::string& s)
     {
-        int a, b, i;
-        Stack<int> st(s.size());
-        for (i=0; s[i]; ++i)
+        jmp a, b;
+        Stack<jmp> st(s.size());
+        for (unsigned long long int i=0; s[i]; ++i)
         {
             std::string number;
             while (s[i] != '$' && s[i] != '+' && s[i] != '-' && s[i] != '*' && s[i] != '/')
                 number.push_back(s[i++]);
             if (!number.empty())
-                st.push(std::stoi(number));
+                st.push(number);
 
             if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/')
             {
