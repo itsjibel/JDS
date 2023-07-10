@@ -1,11 +1,12 @@
-template<typename T> class BTree
+class BTree
 {
 public:
-    T data;
+    typedef long long int lli;
+    lli data;
     BTree* left = NULL;
     BTree* right = NULL;
 
-    BTree* create(const T& data)
+    BTree* create(const lli& data)
     {
         BTree* t = new BTree;
         t->data = data;
@@ -14,15 +15,15 @@ public:
         return t;
     }
 
-    long long int height(BTree* t) const
+    lli height(BTree* t) const
     {
         if (t == NULL)
             return -1;
         if (t->left == NULL && t->right == NULL)
             return 0;
 
-        long long int lh = height(t->left);
-        long long int rh = height(t->right);
+        lli lh = height(t->left);
+        lli rh = height(t->right);
 
         if (lh > rh)
             return lh + 1;
@@ -30,11 +31,29 @@ public:
             return rh + 1;
     }
 
-    long long int numof_nodes(BTree* t) const
+    lli numof_nodes(BTree* t) const
     {
         if (t == NULL)
             return 0;
         return 1 + numof_nodes(t->left) + numof_nodes(t->right);
+    }
+
+    lli max(BTree* t) const
+    {
+        if (t == NULL)
+            return INT32_MIN;
+
+        lli m, lmax, rmax;
+        m = t->data;
+        lmax = max(t->left);
+        rmax = max(t->right);
+
+        if (lmax > m)
+            m = lmax;
+        if (rmax > m)
+            m = rmax;
+
+        return m;
     }
 
     void deleteTree(BTree* t)
