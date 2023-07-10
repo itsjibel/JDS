@@ -36,4 +36,13 @@ public:
             return 0;
         return 1 + numof_nodes(t->left) + numof_nodes(t->right);
     }
+
+    void deleteTree(BTree* t)
+    {
+        if (t == NULL)
+            return;
+        deleteTree(t->left);
+        deleteTree(t->right);
+        delete t;
+    }
 };
