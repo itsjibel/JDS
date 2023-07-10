@@ -5,4 +5,5 @@ examples/dwll
 examples/owll
 examples/queue
 examples/stack
+examples/binary_tree
 .vscode/
