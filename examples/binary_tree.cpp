@@ -9,5 +9,6 @@ int main()
     myBTree->right = myBTree->create(5);
     myBTree->left->left = myBTree->create(11);
     myBTree->right->left->create(2);
+    std::cout<<myBTree->hight(myBTree);
     return 0;
 }
