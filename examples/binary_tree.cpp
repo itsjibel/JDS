@@ -9,6 +9,7 @@ int main()
     myBTree->right = myBTree->create(5);
     myBTree->left->left = myBTree->create(11);
     myBTree->right->left->create(2);
-    std::cout<<myBTree->hight(myBTree);
+    std::cout<<"Hight of tree: "<<myBTree->height(myBTree)<<std::endl;
+    std::cout<<"The number of tree nodes: "<<myBTree->numof_nodes(myBTree)<<std::endl;
     return 0;
 }

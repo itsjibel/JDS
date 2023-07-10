@@ -14,19 +14,26 @@ public:
         return t;
     }
 
-    long long int hight(BTree* t) const
+    long long int height(BTree* t) const
     {
         if (t == NULL)
             return -1;
         if (t->left == NULL && t->right == NULL)
             return 0;
 
-        long long int lh = hight(t->left);
-        long long int rh = hight(t->right);
+        long long int lh = height(t->left);
+        long long int rh = height(t->right);
 
         if (lh > rh)
             return lh + 1;
         else
             return rh + 1;
+    }
+
+    long long int numof_nodes(BTree* t) const
+    {
+        if (t == NULL)
+            return 0;
+        return 1 + numof_nodes(t->left) + numof_nodes(t->right);
     }
 };
