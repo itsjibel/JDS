@@ -76,6 +76,20 @@ public:
         inorder(t->right);
     }
 
+    void postorder(BTree* t)
+    {
+        if (t == NULL)
+            return;
+        postorder(t->left);
+        postorder(t->right);
+        std::cout<<t->data<<" ";
+    }
+
+    void levelorder(BTree* t)
+    {
+        
+    }
+
     void deleteTree(BTree* t)
     {
         if (t == NULL)
