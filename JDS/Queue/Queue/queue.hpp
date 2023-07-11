@@ -40,13 +40,12 @@ template <typename T> class Queue
             return true;
         }
 
-        bool del()
+        T del()
         {
             if (is_empty())
-                return false;
-            queue[rear++] = 0;
+                return queue[0];
             _size--;
-            return true;
+            return queue[rear++];
         }
 
         T at(unsigned long long int i) const
@@ -56,7 +55,7 @@ template <typename T> class Queue
 
         unsigned long long int size() const
         {
-            return capacity;
+            return _size;
         }
 
         void clear()
