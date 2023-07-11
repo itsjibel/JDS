@@ -15,6 +15,8 @@ int main()
     std::cout<<"Preorder: ";
     myBTree->preorder(myBTree);
     std::cout<<std::endl;
-    myBTree->deleteTree(myBTree);
+    std::cout<<"Inorder: ";
+    myBTree->inorder(myBTree);
+    std::cout<<std::endl;
     return 0;
 }

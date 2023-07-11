@@ -67,6 +67,15 @@ public:
         preorder(t->right);
     }
 
+    void inorder(BTree* t)
+    {
+        if (t == NULL)
+            return;
+        inorder(t->left);
+        std::cout<<t->data<<" ";
+        inorder(t->right);
+    }
+
     void deleteTree(BTree* t)
     {
         if (t == NULL)
