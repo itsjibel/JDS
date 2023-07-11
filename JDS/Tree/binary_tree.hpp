@@ -1,3 +1,5 @@
+#include <iostream>
+
 class BTree
 {
 public:
@@ -54,6 +56,15 @@ public:
             m = rmax;
 
         return m;
+    }
+
+    void preorder(BTree* t)
+    {
+        if (t == NULL)
+            return;
+        std::cout<<t->data<<" ";
+        preorder(t->left);
+        preorder(t->right);
     }
 
     void deleteTree(BTree* t)

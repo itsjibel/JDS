@@ -12,6 +12,9 @@ int main()
     std::cout<<"Hight of tree: "<<myBTree->height(myBTree)<<std::endl;
     std::cout<<"The number of tree nodes: "<<myBTree->numof_nodes(myBTree)<<std::endl;
     std::cout<<"The maximum value of the tree: "<<myBTree->max(myBTree)<<std::endl;
+    std::cout<<"Preorder: ";
+    myBTree->preorder(myBTree);
+    std::cout<<std::endl;
     myBTree->deleteTree(myBTree);
     return 0;
 }
