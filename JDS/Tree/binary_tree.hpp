@@ -1,4 +1,5 @@
 #include <iostream>
+#include "../Queue/Queue/queue.hpp"
 
 class BTree
 {
@@ -87,7 +88,20 @@ public:
 
     void levelorder(BTree* t)
     {
-        
+        if (t == NULL)
+            return;
+
+        Queue<BTree*> q(numof_nodes(t));
+        std::cout<<t->data<<" ";
+        do
+        {
+            if (t->left)
+                q.add(t->left);
+            if (t->right)
+                q.add(t->right);
+            t = q.del();
+            std::cout<<t->data<<" ";
+        } while (q.size() != 0);
     }
 
     void deleteTree(BTree* t)

@@ -24,6 +24,10 @@ int main()
     myBTree->postorder(myBTree);
     std::cout<<std::endl;
 
+    std::cout<<"Levelorder: ";
+    myBTree->levelorder(myBTree);
+    std::cout<<std::endl;
+
     myBTree->deleteTree(myBTree);
     return 0;
 }
