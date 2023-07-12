@@ -113,6 +113,39 @@ public:
         return false;
     }
 
+    bool is_complete(BTree* r)
+    {
+        if (r == NULL)
+            return true;
+
+        BTree* t;
+        Queue<BTree*> q(numof_nodes(r));
+        q.add(r);
+
+        bool flag = false;
+        while (q.size() != 0)
+        {
+            t = q.del();
+            if (t->left)
+            {
+                if (flag == true)
+                    return false;
+                q.add(t->left);
+            } else
+                flag = true;
+            
+            if (t->right)
+            {
+                if (flag == true)
+                    return false;
+                q.add(t->right);
+            } else
+                flag = true;
+        }
+
+        return true;
+    }
+
     void deleteTree(BTree* t)
     {
         if (t == NULL)
