@@ -28,6 +28,8 @@ int main()
     myBTree->levelorder(myBTree);
     std::cout<<std::endl;
 
+    std::cout<<"Identical: "<<(myBTree->identical(myBTree, myBTree) ? "True" : "False")<<std::endl;
+
     myBTree->deleteTree(myBTree);
     return 0;
 }

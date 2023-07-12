@@ -104,6 +104,15 @@ public:
         } while (q.size() != 0);
     }
 
+    bool identical(BTree* a, BTree* b)
+    {
+        if (a == NULL && b == NULL)
+            return true;
+        if (a != NULL && b != NULL)
+            return a->data == b->data && identical(a->left, b->left) && identical(a->right, b->right);
+        return false;
+    }
+
     void deleteTree(BTree* t)
     {
         if (t == NULL)
