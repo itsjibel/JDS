@@ -34,6 +34,10 @@ int main()
 
     std::cout<<"Is the tree complete: "<<(myBTree->is_complete(myBTree) ? "True" : "False")<<std::endl;
 
+    std::cout<<"11 is on level "<<myBTree->find_level(myBTree, 11, 1)<<" of the tree"<<std::endl;
+
+    std::cout<<"LCA of 2 and 6 is "<<myBTree->LCA(myBTree, 2, 6)->data<<std::endl;
+
     myBTree->deleteTree(myBTree);
     return 0;
 }

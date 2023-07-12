@@ -146,6 +146,42 @@ public:
         return true;
     }
 
+    lli find_level(BTree* t, const lli& item, const lli& level)
+    {
+        if (t == NULL)
+            return 0;
+        
+        if (t->data == item)
+            return level;
+
+        lli d = find_level(t->left, item, level + 1);
+        if (d != 0)
+            return d;
+        d = find_level(t->right, item, level + 1);
+        return d;
+    }
+
+    BTree* LCA(BTree* r, const lli& a, const lli& b)
+    {
+        if (r == NULL)
+            return NULL;
+        
+        if (r->data == a)
+            return r;
+
+        if (r->data == b)
+            return r;
+
+        BTree *l_lca, *r_lca;
+        l_lca = LCA(r->left, a, b);
+        r_lca = LCA(r->right, a, b);
+
+        if (r_lca && l_lca)
+            return r;
+
+        return (l_lca != NULL) ? l_lca : r_lca;
+    }
+
     void deleteTree(BTree* t)
     {
         if (t == NULL)
