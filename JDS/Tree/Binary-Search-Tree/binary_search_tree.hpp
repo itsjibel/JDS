@@ -39,15 +39,6 @@ public:
         return a;
     }
 
-    void preorder(BSTree* t)
-    {
-        if (t == NULL)
-            return;
-        std::cout<<t->data<<" ";
-        preorder(t->left);
-        preorder(t->right);
-    }
-
     void inorder(BSTree* t)
     {
         if (t == NULL)
@@ -55,15 +46,6 @@ public:
         inorder(t->left);
         std::cout<<t->data<<" ";
         inorder(t->right);
-    }
-
-    void postorder(BSTree* t)
-    {
-        if (t == NULL)
-            return;
-        postorder(t->left);
-        postorder(t->right);
-        std::cout<<t->data<<" ";
     }
 
     bool search(BSTree* t, lli key)
