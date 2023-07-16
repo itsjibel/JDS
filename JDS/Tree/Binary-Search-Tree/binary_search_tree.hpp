@@ -1,18 +1,39 @@
+#include <iostream>
+
 class BSTree
 {
-public:
+private:
     typedef long long int lli;
+    BSTree(lli b) {}
+    BSTree() {}
+
+public:
     lli data;
     BSTree* left = NULL;
     BSTree* right = NULL;
 
-    BSTree* create(const lli& data)
+    static BSTree* createInstance(lli b)
     {
-        BSTree* t = new BSTree;
-        t->data = data;
-        t->left = NULL;
-        t->right = NULL;
-        return t;
+        return new BSTree(b);
+    }
+
+    BSTree* add(BSTree* t, const lli data)
+    {
+        BSTree* a = new BSTree;
+        a->data = data;
+        if (data > t->data)
+        {
+            if (t->right == NULL)
+                t->right = a;
+            else
+                add(t->right, data);
+        } else {
+            if (t->left == NULL)
+                t->left = a;
+            else
+                add(t->left, data);
+        }
+        return a;
     }
 
     void deleteTree(BSTree* t)
