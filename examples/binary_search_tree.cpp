@@ -10,6 +10,11 @@ int main()
     myBSTree->add(myBSTree, 7);
     myBSTree->add(myBSTree, 2);
     myBSTree->add(myBSTree, 6);
+
+    std::cout<<"Inorder: ";
+    myBSTree->inorder(myBSTree);
+    std::cout<<std::endl;
+
     myBSTree->deleteTree(myBSTree);
     return 0;
 }
