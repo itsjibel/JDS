@@ -6,4 +6,5 @@ examples/owll
 examples/queue
 examples/stack
 examples/binary_tree
+examples/binary_search_tree
 .vscode/
