@@ -15,6 +15,8 @@ int main()
     myBSTree->inorder(myBSTree);
     std::cout<<std::endl;
 
+    std::cout<<"Search result for 7: "<<(myBSTree->search(myBSTree, 7) ? "True" : "False")<<std::endl;
+
     myBSTree->deleteTree(myBSTree);
     return 0;
 }

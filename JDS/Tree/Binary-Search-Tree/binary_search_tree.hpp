@@ -19,6 +19,9 @@ public:
 
     BSTree* add(BSTree* t, const lli data)
     {
+        if (t == NULL)
+            return NULL;
+
         BSTree* a = new BSTree;
         a->data = data;
         if (data > t->data)
@@ -61,6 +64,20 @@ public:
         postorder(t->left);
         postorder(t->right);
         std::cout<<t->data<<" ";
+    }
+
+    bool search(BSTree* t, lli key)
+    {
+        if (t == NULL)
+            return false;
+
+        if (key == t->data)
+            return true;
+
+        if (key > t->data)
+            search(t->right, key);
+        else
+            search(t->left, key);
     }
 
     void deleteTree(BSTree* t)
