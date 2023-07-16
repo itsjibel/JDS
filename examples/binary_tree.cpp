@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../JDS/Tree/binary_tree.hpp"
+#include "../JDS/Tree/Binary-Tree/binary_tree.hpp"
 
 int main()
 {
