@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "../../Queue/Queue/queue.hpp"
 
 class BTree
@@ -102,6 +103,110 @@ public:
             t = q.del();
             std::cout<<t->data<<" ";
         } while (q.size() != 0);
+    }
+
+    void draw_tree(BTree* t)
+    {
+        lli tree_height = t->height(t) + 1;
+        std::vector<std::vector<BTree*>> tree;
+        std::vector<BTree*> level;
+        level.push_back(t);
+        for (lli i=0; i<tree_height; i++)
+        {
+            tree.push_back(level);
+            level.clear();
+            for (auto child : tree[i])
+                if (child == NULL)
+                {
+                    level.push_back(NULL);
+                    level.push_back(NULL);
+                } else {
+                    level.push_back(child->left);
+                    level.push_back(child->right);
+                }
+        }
+
+        std::vector<std::string> tree_shape;
+        int layers_added = 0;
+
+        for (lli i=tree_height - 1; i>=0; i--)
+        {
+            lli j=0;
+            tree_shape.push_back("");
+            for (auto child : tree[i])
+            {
+                if (child == NULL)
+                {
+                    tree_shape[tree_height-i-1+layers_added] += " *";
+                } else {
+                    if (tree_height-i-1+layers_added != 0)
+                    {
+                        while (tree_shape[tree_height-i-2+layers_added][j + 1] != '\\')
+                        {
+                            tree_shape[tree_height-i-1+layers_added] += " ";
+                            j++;
+                        }
+                        j++;
+                    } else
+                        tree_shape[tree_height-i-1+layers_added] += ' ';
+                    tree_shape[tree_height-i-1+layers_added] += std::to_string(child->data);
+                }
+            }
+            
+                    if (i == 0)
+                        break;
+
+            tree_shape.push_back("");
+            bool is_left = true;
+            for (lli j=0; j<tree_shape[tree_height-i-1+layers_added].size(); j++)
+            {
+                if (tree_shape[tree_height-i-1+layers_added][j] != ' ')
+                {
+                    if (is_left)
+                        tree_shape[tree_height-i+layers_added].push_back('/');
+                    else
+                        tree_shape[tree_height-i+layers_added].push_back('\\');
+                    is_left = !is_left;
+                } else
+                    tree_shape[tree_height-i+layers_added].push_back(' ');
+            }
+            
+            bool need_to_add_more_layers = false;
+            do
+            {
+                for (lli j=0; j<tree_shape[tree_height-i+layers_added].size(); j++)
+                {
+                    if (tree_shape[tree_height-i+layers_added][j] == '/')
+                    {
+                        if (tree_shape[tree_height-i+layers_added][j+2] != '\\')
+                            need_to_add_more_layers = true;
+                        else {
+                            need_to_add_more_layers = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (need_to_add_more_layers)
+                {
+                    tree_shape.push_back("");
+                    for (lli j=0; j<tree_shape[tree_height-i+layers_added].size(); j++)
+                    {
+                        if (tree_shape[tree_height-i+layers_added][j - 1] == '/')
+                            tree_shape[tree_height-i+layers_added+1].push_back('/');
+                        else if (tree_shape[tree_height-i+layers_added][j + 1] == '\\')
+                            tree_shape[tree_height-i+layers_added+1].push_back('\\');
+                        else
+                            tree_shape[tree_height-i+layers_added+1].push_back(' ');
+                    }
+                }
+                layers_added++;
+            } while (need_to_add_more_layers);
+
+        }
+
+        for (lli i=tree_shape.size() - 1; i>=0; i--)
+            std::cout<<tree_shape[i]<<std::endl;
     }
 
     bool identical(BTree* a, BTree* b)

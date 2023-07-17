@@ -1,4 +1,3 @@
-#include <iostream>
 #include "../JDS/Tree/Binary-Tree/binary_tree.hpp"
 
 int main()
@@ -6,11 +5,14 @@ int main()
     BTree *myBTree;
     myBTree = myBTree->create(9);
     myBTree->left = myBTree->create(3);
-    myBTree->right = myBTree->create(12);
-    myBTree->left->left = myBTree->create(11);
+    myBTree->right = myBTree->create(1);
+    myBTree->left->left = myBTree->create(8);
     myBTree->left->right = myBTree->create(7);
     myBTree->right->left = myBTree->create(2);
     myBTree->right->right = myBTree->create(6);
+    myBTree->right->right->right = myBTree->create(4);
+    myBTree->right->right->left = myBTree->create(0);
+    myBTree->right->left->right = myBTree->create(5);
     std::cout<<"Hight of tree: "<<myBTree->height(myBTree)<<std::endl;
     std::cout<<"The number of tree nodes: "<<myBTree->numof_nodes(myBTree)<<std::endl;
     std::cout<<"The maximum value of the tree: "<<myBTree->max(myBTree)<<std::endl;
@@ -37,6 +39,10 @@ int main()
     std::cout<<"11 is on level "<<myBTree->find_level(myBTree, 11, 1)<<" of the tree"<<std::endl;
 
     std::cout<<"LCA of 2 and 6 is "<<myBTree->LCA(myBTree, 2, 6)->data<<std::endl;
+
+    std::cout<<"tree:\n";
+    myBTree->draw_tree(myBTree);
+    std::cout<<std::endl;
 
     myBTree->deleteTree(myBTree);
     return 0;
