@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <math.h>
 #include "../../Queue/Queue/queue.hpp"
 
 class BTree
@@ -225,24 +226,25 @@ public:
             // Nodes of each level named child
             for (auto child : tree[i])
             {
+                lli numof_chid_number_size = child != NULL ? (log10(child->data) + 1) : 1;
                 // While the next character of the under-layer is not '\', we have not reached a connection,
                 // so we iterate more to reach a connection and cout white space
                 if (tree_height-i-1+layers_added != 0)
                 {
-                    while (tree_shape[tree_height-i-2+layers_added][j + 1] != '\\')
+                    while (tree_shape[tree_height-i-2+layers_added][j + 1 + numof_chid_number_size] != '\\')
                     {
                         tree_shape[tree_height-i-1+layers_added] += " ";
                         j++;
                     }
-                    j++;
+                    j += 3;
                 } else
                     tree_shape[tree_height-i-1+layers_added] += ' ';
 
                 // When we reach a connection at the under-layer, so we add node data at this position
                 if (child == NULL)
-                    tree_shape[tree_height-i-1+layers_added] += '*';
+                    tree_shape[tree_height-i-1+layers_added] += "( )";
                 else
-                    tree_shape[tree_height-i-1+layers_added] += std::to_string(child->data);
+                    tree_shape[tree_height-i-1+layers_added] += '(' + std::to_string(child->data) + ')';
             }
             
             // Because we iterate from the tail of the tree is necessary to break the for loop when we reach the root of the tree,
@@ -256,12 +258,15 @@ public:
             bool is_left = true;
             for (lli j=0; j<tree_shape[tree_height-i-1+layers_added].size(); j++)
             {
-                if (tree_shape[tree_height-i-1+layers_added][j] != ' ')
+                if (tree_shape[tree_height-i-1+layers_added][j] == ')')
                 {
                     if (is_left)
                         tree_shape[tree_height-i+layers_added].push_back('/');
-                    else
+                    else {
+                        tree_shape[tree_height-i+layers_added].pop_back();
                         tree_shape[tree_height-i+layers_added].push_back('\\');
+                        tree_shape[tree_height-i+layers_added].push_back(' ');
+                    }
                     is_left = !is_left;
                 } else
                     tree_shape[tree_height-i+layers_added].push_back(' ');
@@ -276,7 +281,7 @@ public:
                 {
                     if (tree_shape[tree_height-i+layers_added][j] == '/')
                     {
-                        if (tree_shape[tree_height-i+layers_added][j+2] != '\\')
+                        if (tree_shape[tree_height-i+layers_added][j+2] != '\\' && tree_shape[tree_height-i+layers_added][j+1] != '\\')
                             need_to_add_more_layers = true;
                         else {
                             need_to_add_more_layers = false;
@@ -292,7 +297,7 @@ public:
                     {
                         if (tree_shape[tree_height-i+layers_added][j - 1] == '/')
                             tree_shape[tree_height-i+layers_added+1].push_back('/');
-                        else if (tree_shape[tree_height-i+layers_added][j + 1] == '\\')
+                        else if (tree_shape[tree_height-i+layers_added][j + 1] == '\\' || (tree_shape[tree_height-i+layers_added][j] == '\\' && tree_shape[tree_height-i+layers_added][j - 1] == '/'))
                             tree_shape[tree_height-i+layers_added+1].push_back('\\');
                         else
                             tree_shape[tree_height-i+layers_added+1].push_back(' ');

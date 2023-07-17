@@ -8,8 +8,8 @@ int main()
     myBTree->right = myBTree->create(1);
     myBTree->left->left = myBTree->create(8);
     myBTree->right->left = myBTree->create(2);
-    myBTree->right->right = myBTree->create(6);
-    myBTree->right->right->right = myBTree->create(4);
+    myBTree->right->right = myBTree->create(61);
+    myBTree->right->right->right = myBTree->create(412);
     myBTree->right->right->left = myBTree->create(0);
     myBTree->right->left->right = myBTree->create(5);
     std::cout<<"Hight of tree: "<<myBTree->height(myBTree)<<std::endl;
@@ -35,9 +35,9 @@ int main()
 
     std::cout<<"Is the tree complete: "<<(myBTree->is_complete(myBTree) ? "True" : "False")<<std::endl;
 
-    std::cout<<"11 is on level "<<myBTree->find_level(myBTree, 11, 1)<<" of the tree"<<std::endl;
+    std::cout<<"61 is on level "<<myBTree->find_level(myBTree, 61, 1)<<" of the tree"<<std::endl;
 
-    std::cout<<"LCA of 2 and 6 is "<<myBTree->LCA(myBTree, 2, 6)->data<<std::endl;
+    std::cout<<"LCA of 5 and 61 is "<<myBTree->LCA(myBTree, 5, 61)->data<<std::endl;
 
     std::cout<<"tree:\n";
     myBTree->draw_tree(myBTree);
