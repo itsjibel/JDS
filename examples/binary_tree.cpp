@@ -7,7 +7,6 @@ int main()
     myBTree->left = myBTree->create(3);
     myBTree->right = myBTree->create(1);
     myBTree->left->left = myBTree->create(8);
-    myBTree->left->right = myBTree->create(7);
     myBTree->right->left = myBTree->create(2);
     myBTree->right->right = myBTree->create(6);
     myBTree->right->right->right = myBTree->create(4);
@@ -42,7 +41,6 @@ int main()
 
     std::cout<<"tree:\n";
     myBTree->draw_tree(myBTree);
-    std::cout<<std::endl;
 
     myBTree->deleteTree(myBTree);
     return 0;
