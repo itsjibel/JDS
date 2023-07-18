@@ -193,7 +193,7 @@ public:
         delete t;
     }
 
-        void draw_tree(BTree* t)
+    void draw_tree(BTree* t)
     {
         // Put each level of tree into a std::vector<std::vector<BTree*>>, and each node in a std::vector<BTree*>
         lli tree_height = t->height(t) + 1;
@@ -242,7 +242,7 @@ public:
 
                 // When we reach a connection at the under-layer, so we add node data at this position
                 if (child == NULL)
-                    tree_shape[tree_height-i-1+layers_added] += "( )";
+                    tree_shape[tree_height-i-1+layers_added] += "(*)";
                 else
                     tree_shape[tree_height-i-1+layers_added] += '(' + std::to_string(child->data) + ')';
             }
@@ -305,6 +305,25 @@ public:
                 }
                 layers_added++;
             } while (need_to_add_more_layers);
+        }
+
+        for (lli i=0; i<tree_shape.size(); i++)
+        {
+            for (lli j=0; j<tree_shape[i].size(); j++)
+            {
+                if (tree_shape[i][j] == '*')
+                    tree_shape[i][j] = tree_shape[i][j-1] = tree_shape[i][j+1] = ' ';
+
+                if (tree_shape[i][j] == '/' && tree_shape[i-1][j-1] == ' ')
+                {
+                    tree_shape[i][j] = ' ';
+                }
+
+                if (tree_shape[i][j] == '\\' && tree_shape[i-1][j+1] == ' ')
+                {
+                    tree_shape[i][j] = ' ';
+                }
+            }
         }
 
         // Print the shape of tree

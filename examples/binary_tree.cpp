@@ -6,7 +6,7 @@ int main()
     myBTree = myBTree->create(9);
     myBTree->left = myBTree->create(3);
     myBTree->right = myBTree->create(1);
-    myBTree->left->left = myBTree->create(8);
+    myBTree->left->right = myBTree->create(8);
     myBTree->right->left = myBTree->create(2);
     myBTree->right->right = myBTree->create(61);
     myBTree->right->right->right = myBTree->create(412);
