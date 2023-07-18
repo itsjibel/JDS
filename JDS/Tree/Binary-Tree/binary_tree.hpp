@@ -227,24 +227,25 @@ public:
             for (auto child : tree[i])
             {
                 lli numof_chid_number_size = child != NULL ? (log10((child->data == 0 ? 1 : child->data)) + 1) : 1;
+
                 // While the next character of the under-layer is not '\', we have not reached a connection,
                 // so we iterate more to reach a connection and cout white space
                 if (tree_height-i-1+layers_added != 0)
                 {
-                    while (tree_shape[tree_height-i-2+layers_added][j + 1 + numof_chid_number_size] != '\\')
+                    while (tree_shape[tree_height-i+layers_added-2][j+numof_chid_number_size+1] != '\\')
                     {
-                        tree_shape[tree_height-i-1+layers_added] += " ";
+                        tree_shape[tree_height-i+layers_added-1] += ' ';
                         j++;
                     }
-                    j += 2 + numof_chid_number_size;
+                    j += numof_chid_number_size + 2;
                 } else
-                    tree_shape[tree_height-i-1+layers_added] += ' ';
+                    tree_shape[tree_height-i+layers_added-1] += ' ';
 
                 // When we reach a connection at the under-layer, so we add node data at this position
                 if (child == NULL)
-                    tree_shape[tree_height-i-1+layers_added] += "(*)";
+                    tree_shape[tree_height-i+layers_added-1] += "(*)";
                 else
-                    tree_shape[tree_height-i-1+layers_added] += '(' + std::to_string(child->data) + ')';
+                    tree_shape[tree_height-i+layers_added-1] += '(' + std::to_string(child->data) + ')';
             }
             
             // Because we iterate from the tail of the tree is necessary to break the for loop when we reach the root of the tree,
@@ -255,19 +256,19 @@ public:
             // Make a connection with this logic that if the under-layer character is a number,
             // if it is time to make the left connection we push back '/' else we push back '\'
             tree_shape.push_back("");
-            bool is_left = true;
-            for (lli j=0; j<tree_shape[tree_height-i-1+layers_added].size(); j++)
+            bool is_left_connection = true;
+            for (lli j=0; j<tree_shape[tree_height-i+layers_added-1].size(); j++)
             {
-                if (tree_shape[tree_height-i-1+layers_added][j] == ')')
+                if (tree_shape[tree_height-i+layers_added-1][j] == ')')
                 {
-                    if (is_left)
+                    if (is_left_connection)
                         tree_shape[tree_height-i+layers_added].push_back('/');
                     else {
                         tree_shape[tree_height-i+layers_added].pop_back();
                         tree_shape[tree_height-i+layers_added].push_back('\\');
                         tree_shape[tree_height-i+layers_added].push_back(' ');
                     }
-                    is_left = !is_left;
+                    is_left_connection = !is_left_connection;
                 } else
                     tree_shape[tree_height-i+layers_added].push_back(' ');
             }
@@ -295,9 +296,9 @@ public:
                     tree_shape.push_back("");
                     for (lli j=0; j<tree_shape[tree_height-i+layers_added].size(); j++)
                     {
-                        if (tree_shape[tree_height-i+layers_added][j - 1] == '/')
+                        if (tree_shape[tree_height-i+layers_added][j-1] == '/')
                             tree_shape[tree_height-i+layers_added+1].push_back('/');
-                        else if (tree_shape[tree_height-i+layers_added][j + 1] == '\\' || (tree_shape[tree_height-i+layers_added][j] == '\\' && tree_shape[tree_height-i+layers_added][j - 1] == '/'))
+                        else if (tree_shape[tree_height-i+layers_added][j+1] == '\\')
                             tree_shape[tree_height-i+layers_added+1].push_back('\\');
                         else
                             tree_shape[tree_height-i+layers_added+1].push_back(' ');
