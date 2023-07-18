@@ -12,6 +12,7 @@ int main()
     myBTree->right->right->right = myBTree->create(412);
     myBTree->right->right->left = myBTree->create(0);
     myBTree->right->left->right = myBTree->create(5);
+    myBTree->right->right->left->right = myBTree->create(21);
     std::cout<<"Hight of tree: "<<myBTree->height(myBTree)<<std::endl;
     std::cout<<"The number of tree nodes: "<<myBTree->numof_nodes(myBTree)<<std::endl;
     std::cout<<"The maximum value of the tree: "<<myBTree->max(myBTree)<<std::endl;

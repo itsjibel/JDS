@@ -226,7 +226,7 @@ public:
             // Nodes of each level named child
             for (auto child : tree[i])
             {
-                lli numof_chid_number_size = child != NULL ? (log10(child->data) + 1) : 1;
+                lli numof_chid_number_size = child != NULL ? (log10((child->data == 0 ? 1 : child->data)) + 1) : 1;
                 // While the next character of the under-layer is not '\', we have not reached a connection,
                 // so we iterate more to reach a connection and cout white space
                 if (tree_height-i-1+layers_added != 0)
@@ -236,7 +236,7 @@ public:
                         tree_shape[tree_height-i-1+layers_added] += " ";
                         j++;
                     }
-                    j += 3;
+                    j += 2 + numof_chid_number_size;
                 } else
                     tree_shape[tree_height-i-1+layers_added] += ' ';
 
