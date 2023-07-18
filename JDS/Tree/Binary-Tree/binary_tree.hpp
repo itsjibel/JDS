@@ -309,23 +309,15 @@ public:
 
         // Cut the NULL nodes connections with other nodes
         for (lli i=0; i<tree_shape.size(); i++)
-        {
             for (lli j=0; j<tree_shape[i].size(); j++)
             {
                 if (tree_shape[i][j] == '*')
                     tree_shape[i][j] = tree_shape[i][j-1] = tree_shape[i][j+1] = ' ';
-
-                if (tree_shape[i][j] == '/' && tree_shape[i-1][j-1] == ' ')
-                {
+                else if (tree_shape[i][j] == '/' && tree_shape[i-1][j-1] == ' ')
                     tree_shape[i][j] = ' ';
-                }
-
-                if (tree_shape[i][j] == '\\' && tree_shape[i-1][j+1] == ' ')
-                {
+                else if (tree_shape[i][j] == '\\' && tree_shape[i-1][j+1] == ' ')
                     tree_shape[i][j] = ' ';
-                }
             }
-        }
 
         // Print the shape of tree
         for (lli i=tree_shape.size() - 1; i>=0; i--)
