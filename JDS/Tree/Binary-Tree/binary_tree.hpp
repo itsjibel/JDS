@@ -307,6 +307,7 @@ public:
             } while (need_to_add_more_layers);
         }
 
+        // Cut the NULL nodes connections with other nodes
         for (lli i=0; i<tree_shape.size(); i++)
         {
             for (lli j=0; j<tree_shape[i].size(); j++)
