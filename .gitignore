@@ -7,4 +7,5 @@ examples/queue
 examples/stack
 examples/binary_tree
 examples/binary_search_tree
+examples/avl_tree
 .vscode/
