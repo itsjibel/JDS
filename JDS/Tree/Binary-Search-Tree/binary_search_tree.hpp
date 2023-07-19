@@ -89,6 +89,46 @@ public:
         delete t;
     }
 
+    BSTree* min(BSTree* r)
+    {
+        BSTree* t;
+        while (t->left != NULL)
+            t = t->left;
+
+        return t;
+    }
+
+    BSTree* deleteNode(BSTree* r, lli key)
+    {
+        if (r == NULL)
+            return r;
+        
+        BSTree* t;
+
+        if (key < r->data)
+            r->left = deleteNode(r->left, key);
+        else if (key > r->data)
+            r->right = deleteNode(r->right, key);
+        else {
+            if (r->left == NULL)
+            {
+                t = r->right;
+                delete r;
+                return t;
+            } else if (r->right == NULL) {
+                t = r->left;
+                delete r;
+                return t;
+            }
+
+            t = min(r->right);
+            r->data = t->data;
+            r->right = deleteNode(r->right, t->data);
+        }
+
+        return r;
+    }
+
     void draw_tree(BSTree* t)
     {
         // Put each level of tree into a std::vector<std::vector<BTree*>>, and each node in a std::vector<BTree*>

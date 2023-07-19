@@ -17,6 +17,8 @@ int main()
 
     std::cout<<"Search result for 7: "<<(myBSTree->search(myBSTree, 7) ? "True" : "False")<<std::endl;
 
+    myBSTree->deleteNode(myBSTree, 12);
+
     std::cout<<"Tree:"<<std::endl;
     myBSTree->draw_tree(myBSTree);
 
