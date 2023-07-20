@@ -3,24 +3,43 @@
 #include <math.h>
 #include "../../Queue/Queue/queue.hpp"
 
+struct Node
+{
+    long long int data;
+    Node* left = NULL;
+    Node* right = NULL;
+};
+
 class BTree
 {
-public:
+protected:
     typedef long long int lli;
-    lli data;
-    BTree* left = NULL;
-    BTree* right = NULL;
-
-    BTree* create(const lli& data)
+    BTree(lli b)
     {
-        BTree* t = new BTree;
+        Node* t = new Node;
+        t->data = b;
+        n = t;
+    }
+    BTree() {}
+
+public:
+    Node* n;
+
+    static BTree* createInstance(lli b)
+    {
+        return new BTree(b);
+    }
+
+    virtual Node* add(const lli& data)
+    {
+        Node* t = new Node;
         t->data = data;
         t->left = NULL;
         t->right = NULL;
         return t;
     }
 
-    lli height(BTree* t) const
+    lli height(Node* t) const
     {
         if (t == NULL)
             return -1;
@@ -36,14 +55,14 @@ public:
             return rh + 1;
     }
 
-    lli numof_nodes(BTree* t) const
+    lli numof_nodes(Node* t) const
     {
         if (t == NULL)
             return 0;
         return 1 + numof_nodes(t->left) + numof_nodes(t->right);
     }
 
-    lli max(BTree* t) const
+    virtual lli max(Node* t) const
     {
         if (t == NULL)
             return INT32_MIN;
@@ -61,7 +80,7 @@ public:
         return m;
     }
 
-    void preorder(BTree* t)
+    void preorder(Node* t)
     {
         if (t == NULL)
             return;
@@ -70,7 +89,7 @@ public:
         preorder(t->right);
     }
 
-    void inorder(BTree* t)
+    void inorder(Node* t)
     {
         if (t == NULL)
             return;
@@ -79,7 +98,7 @@ public:
         inorder(t->right);
     }
 
-    void postorder(BTree* t)
+    void postorder(Node* t)
     {
         if (t == NULL)
             return;
@@ -88,12 +107,12 @@ public:
         std::cout<<t->data<<" ";
     }
 
-    void levelorder(BTree* t)
+    void levelorder(Node* t)
     {
         if (t == NULL)
             return;
 
-        Queue<BTree*> q(numof_nodes(t));
+        Queue<Node*> q(numof_nodes(t));
         std::cout<<t->data<<" ";
         do
         {
@@ -106,7 +125,7 @@ public:
         } while (q.size() != 0);
     }
 
-    bool identical(BTree* a, BTree* b)
+    bool identical(Node* a, Node* b)
     {
         if (a == NULL && b == NULL)
             return true;
@@ -115,13 +134,13 @@ public:
         return false;
     }
 
-    bool is_complete(BTree* r)
+    bool is_complete(Node* r)
     {
         if (r == NULL)
             return true;
 
-        BTree* t;
-        Queue<BTree*> q(numof_nodes(r));
+        Node* t;
+        Queue<Node*> q(numof_nodes(r));
         q.add(r);
 
         bool flag = false;
@@ -148,7 +167,7 @@ public:
         return true;
     }
 
-    lli find_level(BTree* t, const lli& item, const lli& level)
+    lli find_level(Node* t, const lli& item, const lli& level)
     {
         if (t == NULL)
             return 0;
@@ -163,7 +182,7 @@ public:
         return d;
     }
 
-    BTree* LCA(BTree* r, const lli& a, const lli& b)
+    Node* LCA(Node* r, const lli& a, const lli& b)
     {
         if (r == NULL)
             return NULL;
@@ -174,7 +193,7 @@ public:
         if (r->data == b)
             return r;
 
-        BTree *l_lca, *r_lca;
+        Node *l_lca, *r_lca;
         l_lca = LCA(r->left, a, b);
         r_lca = LCA(r->right, a, b);
 
@@ -184,7 +203,7 @@ public:
         return (l_lca != NULL) ? l_lca : r_lca;
     }
 
-    void deleteTree(BTree* t)
+    void deleteTree(Node* t)
     {
         if (t == NULL)
             return;
@@ -193,12 +212,12 @@ public:
         delete t;
     }
 
-    void draw_tree(BTree* t)
+    void draw_tree(Node* t)
     {
-        // Put each level of tree into a std::vector<std::vector<BTree*>>, and each node in a std::vector<BTree*>
-        lli tree_height = t->height(t) + 1;
-        std::vector<std::vector<BTree*>> tree;
-        std::vector<BTree*> level;
+        // Put each level of tree into a std::vector<std::vector<Node*>>, and each node in a std::vector<Node*>
+        lli tree_height = height(t) + 1;
+        std::vector<std::vector<Node*>> tree;
+        std::vector<Node*> level;
         level.push_back(t);
         for (lli i=0; i<tree_height; i++)
         {
