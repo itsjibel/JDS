@@ -1,30 +1,23 @@
-#include <iostream>
-#include <vector>
-#include <math.h>
+#include "../Binary-Search-Tree/binary_search_tree.hpp"
 
-class AVLTree
+class AVLTree: public BSTree
 {
-private:
+protected:
     typedef long long int lli;
-    AVLTree(lli b) {}
+    AVLTree(lli b)
+    {
+        Node* t = new Node;
+        t->data = b;
+        n = t;
+    }
+
     AVLTree() {}
 
 public:
-    lli data;
-    AVLTree* left = NULL;
-    AVLTree* right = NULL;
+    Node* n;
 
     static AVLTree* createInstance(lli b)
     {
         return new AVLTree(b);
-    }
-
-    void deleteTree(AVLTree* t)
-    {
-        if (t == NULL)
-            return;
-        deleteTree(t->left);
-        deleteTree(t->right);
-        delete t;
     }
 };

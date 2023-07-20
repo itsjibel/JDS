@@ -4,6 +4,6 @@ int main()
 {
     AVLTree* myAVLTree = AVLTree::createInstance(9);
 
-    myAVLTree->deleteTree(myAVLTree);
+    myAVLTree->deleteTree(myAVLTree->n);
     return 0;
 }
