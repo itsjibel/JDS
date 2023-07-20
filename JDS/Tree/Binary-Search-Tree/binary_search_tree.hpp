@@ -21,7 +21,7 @@ public:
         return new BSTree(b);
     }
 
-    Node* add(Node* t, const lli data)
+    virtual Node* add(Node* t, const lli data)
     {
         if (t == NULL)
             return NULL;
