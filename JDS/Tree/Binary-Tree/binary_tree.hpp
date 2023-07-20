@@ -5,9 +5,10 @@
 
 struct Node
 {
-    long long int data;
+    long long int data {0};
     Node* left = NULL;
     Node* right = NULL;
+    long long int height {1};
 };
 
 class BTree
