@@ -20,6 +20,7 @@ protected:
         t->data = b;
         n = t;
     }
+
     BTree() {}
 
 public:
