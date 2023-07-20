@@ -3,7 +3,6 @@
 class AVLTree: public BSTree
 {
 protected:
-    typedef long long int lli;
     AVLTree(lli b)
     {
         Node* t = new Node;

@@ -3,7 +3,6 @@
 class BSTree: public BTree
 {
 protected:
-    typedef long long int lli;
     BSTree(lli b)
     {
         Node* t = new Node;
