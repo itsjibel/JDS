@@ -8,4 +8,5 @@ examples/stack
 examples/binary_tree
 examples/binary_search_tree
 examples/avl_tree
+examples/min_heap
 .vscode/
