@@ -25,6 +25,42 @@ public:
         }
     }
 
+    void MinHeapify(lli i)
+    {
+        lli l = 2*i + 1;
+        lli r = 2*i + 2;
+        lli smallest = i;
+
+        if (l < size() && min_heap_arr[l] < min_heap_arr[i])
+            smallest = l;
+
+        if (r < size() && min_heap_arr[r] < min_heap_arr[smallest])
+            smallest = r;
+    
+        if (smallest != i)
+        {
+            std::swap(min_heap_arr[i], min_heap_arr[smallest]);
+            MinHeapify(smallest);
+        }
+    }
+
+    lli remove()
+    {
+        lli root = min_heap_arr[0];
+        if (size() == 1)
+        {
+            min_heap_arr.pop_back();
+            return root;
+        }
+
+        min_heap_arr[0] = min_heap_arr[size() - 1];
+        min_heap_arr.pop_back();
+
+        MinHeapify(0);
+
+        return root;
+    }
+
     unsigned long int size() const
     {
         return min_heap_arr.size();

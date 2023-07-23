@@ -11,6 +11,7 @@ int main()
     myMinHeap.add(1);
     myMinHeap.add(5);
     myMinHeap.add(2);
+    myMinHeap.remove();
 
     for (long long int number : myMinHeap.min_heap_arr)
         std::cout<<number<<std::endl;
