@@ -15,10 +15,33 @@ public:
 
     void add(lli val)
     {
+        lli i = max_heap_arr.size();
+        max_heap_arr.push_back(val);
+
+        while (i != 0 && max_heap_arr[i] > max_heap_arr[parent(i)])
+        {
+            std::swap(max_heap_arr[i], max_heap_arr[parent(i)]);
+            i = parent(i);
+        }
     }
 
     void MaxHeapify(lli i)
     {
+        lli l = 2*i + 1;
+        lli r = 2*i + 2;
+        lli biggest = i;
+
+        if (l < size() && max_heap_arr[l] > max_heap_arr[i])
+            biggest = l;
+
+        if (r < size() && max_heap_arr[r] > max_heap_arr[biggest])
+            biggest = r;
+    
+        if (biggest != i)
+        {
+            std::swap(max_heap_arr[i], max_heap_arr[biggest]);
+            MaxHeapify(biggest);
+        }
     }
 
     lli remove()
