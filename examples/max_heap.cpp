@@ -17,5 +17,12 @@ int main()
         std::cout<<myMaxHeap.max_heap_arr[i]<<(i < myMaxHeap.size() - 1 ? ", " : "");
     std::cout<<']'<<std::endl;
 
+    myMaxHeap.remove();
+
+    std::cout<<"Before: [";
+    for (long long int i=0; i<myMaxHeap.size(); i++)
+        std::cout<<myMaxHeap.max_heap_arr[i]<<(i < myMaxHeap.size() - 1 ? ", " : "");
+    std::cout<<']'<<std::endl;
+
     return 0;
 }

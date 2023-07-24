@@ -46,6 +46,19 @@ public:
 
     lli remove()
     {
+        lli root = max_heap_arr[0];
+        if (size() == 1)
+        {
+            max_heap_arr.pop_back();
+            return root;
+        }
+
+        max_heap_arr[0] = max_heap_arr[size() - 1];
+        max_heap_arr.pop_back();
+
+        MaxHeapify(0);
+
+        return root;
     }
 
     void increase(lli i, lli value)
