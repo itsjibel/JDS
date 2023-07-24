@@ -11,10 +11,19 @@ int main()
     myMinHeap.add(1);
     myMinHeap.add(5);
     myMinHeap.add(2);
-    myMinHeap.remove();
 
-    for (long long int number : myMinHeap.min_heap_arr)
-        std::cout<<number<<std::endl;
+    std::cout<<"Before: [";
+    for (long long int i=0; i<myMinHeap.size(); i++)
+        std::cout<<myMinHeap.min_heap_arr[i]<<(i < myMinHeap.size() - 1 ? ", " : "");
+    std::cout<<']'<<std::endl;
+
+    myMinHeap.remove();
+    myMinHeap.decrease(3, 0);
+
+    std::cout<<"After:  [";
+    for (long long int i=0; i<myMinHeap.size(); i++)
+        std::cout<<myMinHeap.min_heap_arr[i]<<(i < myMinHeap.size() - 1 ? ", " : "");
+    std::cout<<']'<<std::endl;
 
     return 0;
 }

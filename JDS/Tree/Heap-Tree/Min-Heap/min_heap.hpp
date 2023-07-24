@@ -61,6 +61,16 @@ public:
         return root;
     }
 
+    void decrease(lli i, lli value)
+    {
+        min_heap_arr[i] = value;
+        while (i != 0 && min_heap_arr[i] < min_heap_arr[parent(i)])
+        {
+            std::swap(min_heap_arr[i], min_heap_arr[parent(i)]);
+            i = parent(i);
+        }
+    }
+
     unsigned long int size() const
     {
         return min_heap_arr.size();
