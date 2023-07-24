@@ -5,6 +5,25 @@ class MaxHeap
 private:
     typedef long long int lli;
 
+    void Max_Heapify(lli arr[], lli n, lli i)
+    {
+        lli l = 2*i + 1;
+        lli r = 2*i + 2;
+        lli largest = i;
+
+        if (l < n && arr[l] > arr[largest])
+            largest = l;
+
+        if (r < n && arr[r] > arr[largest])
+            largest = r;
+    
+        if (largest != i)
+        {
+            std::swap(arr[i], arr[largest]);
+            Max_Heapify(arr, n, largest);
+        }
+    }
+
 public:
     std::vector<lli> max_heap_arr;
 
@@ -29,18 +48,18 @@ public:
     {
         lli l = 2*i + 1;
         lli r = 2*i + 2;
-        lli biggest = i;
+        lli largest = i;
 
         if (l < size() && max_heap_arr[l] > max_heap_arr[i])
-            biggest = l;
+            largest = l;
 
-        if (r < size() && max_heap_arr[r] > max_heap_arr[biggest])
-            biggest = r;
+        if (r < size() && max_heap_arr[r] > max_heap_arr[largest])
+            largest = r;
     
-        if (biggest != i)
+        if (largest != i)
         {
-            std::swap(max_heap_arr[i], max_heap_arr[biggest]);
-            MaxHeapify(biggest);
+            std::swap(max_heap_arr[i], max_heap_arr[largest]);
+            MaxHeapify(largest);
         }
     }
 
@@ -68,6 +87,18 @@ public:
         {
             std::swap(max_heap_arr[i], max_heap_arr[parent(i)]);
             i = parent(i);
+        }
+    }
+
+    void heapSort(lli arr[], lli n)
+    {
+        for (lli i=n/2-1; i>=0; i--)
+            Max_Heapify(arr, n, i);
+
+        for (lli i=n-1; i>=0; i--)
+        {
+            std::swap(arr[0], arr[i]);
+            Max_Heapify(arr, i, 0);
         }
     }
 

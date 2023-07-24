@@ -25,5 +25,19 @@ int main()
         std::cout<<myMaxHeap.max_heap_arr[i]<<(i < myMaxHeap.size() - 1 ? ", " : "");
     std::cout<<']'<<std::endl;
 
+    long long int array[7] {92, 4, 13, 17, 2, 3, 21};
+
+    std::cout<<"Array before heap sort: [";
+    for (long long int i=0; i<7; i++)
+        std::cout<<array[i]<<(i < 6 ? ", " : "");
+    std::cout<<']'<<std::endl;
+
+    myMaxHeap.heapSort(array, 7);
+
+    std::cout<<"Array after heap sort:  [";
+    for (long long int i=0; i<7; i++)
+        std::cout<<array[i]<<(i < 6 ? ", " : "");
+    std::cout<<']'<<std::endl;
+
     return 0;
 }
