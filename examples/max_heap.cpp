@@ -18,6 +18,7 @@ int main()
     std::cout<<']'<<std::endl;
 
     myMaxHeap.remove();
+    myMaxHeap.increase(1, 11);
 
     std::cout<<"Before: [";
     for (long long int i=0; i<myMaxHeap.size(); i++)

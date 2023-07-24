@@ -63,6 +63,12 @@ public:
 
     void increase(lli i, lli value)
     {
+        max_heap_arr[i] = value;
+        while (i != 0 && max_heap_arr[i] > max_heap_arr[parent(i)])
+        {
+            std::swap(max_heap_arr[i], max_heap_arr[parent(i)]);
+            i = parent(i);
+        }
     }
 
     unsigned long int size() const
