@@ -4,20 +4,21 @@
 
 ### JDS library provides:
 
-* **Array**
-* **Queue**
-  * Circular-Queue
-  * Queue
-* **Stack**
-* **Linked list**
-  * One-way linked list
-  * Double-way linked list
-  * Circular-way linked list
+* ***Array***
+* ***Queue***
+  * **Circular-Queue**
+  * **Queue**
+* ***Stack***
+* ***Linked list***
+  * **One-way linked list**
+  * **Double-way linked list**
+  * **Circular-way linked list**
 
-* **Tree**
-  * Binary Tree
+* ***Tree***
+  * **Binary Tree**
     * Binary Search Tree
     * Binary Tree
-  * Heap Tree
+  * **Heap Tree**
     * Min heap
     * Max heap
+  * **AVL Tree**
