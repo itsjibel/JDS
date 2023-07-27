@@ -25,5 +25,8 @@ int main()
         std::cout<<myMinHeap.min_heap_arr[i]<<(i < myMinHeap.size() - 1 ? ", " : "");
     std::cout<<']'<<std::endl;
 
+    std::cout<<"Tree:"<<std::endl;
+    myMinHeap.draw_tree();
+
     return 0;
 }
