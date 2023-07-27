@@ -13,6 +13,11 @@
   * One-way linked list
   * Double-way linked list
   * Circular-way linked list
-* **Binary Tree**
-  * Binary Search Tree
+
+* **Tree**
   * Binary Tree
+    * Binary Search Tree
+    * Binary Tree
+  * Heap Tree
+    * Min heap
+    * Max heap
