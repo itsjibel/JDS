@@ -1,4 +1,3 @@
-#include <vector>
 #include "../../Binary-Tree/binary_tree.hpp"
 
 class MaxHeap
