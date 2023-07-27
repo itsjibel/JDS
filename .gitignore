@@ -10,4 +10,5 @@ examples/binary_search_tree
 examples/avl_tree
 examples/min_heap
 examples/max_heap
+examples/graph
 .vscode/
