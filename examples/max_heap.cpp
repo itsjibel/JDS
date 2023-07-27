@@ -39,5 +39,8 @@ int main()
         std::cout<<array[i]<<(i < 6 ? ", " : "");
     std::cout<<']'<<std::endl;
 
+    std::cout<<"Tree:"<<std::endl;
+    myMaxHeap.draw_tree();
+
     return 0;
 }

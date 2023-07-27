@@ -1,4 +1,5 @@
 #include <vector>
+#include "../../Binary-Tree/binary_tree.hpp"
 
 class MaxHeap
 {
@@ -100,6 +101,39 @@ public:
             std::swap(arr[0], arr[i]);
             Max_Heapify(arr, i, 0);
         }
+    }
+
+    void draw_tree()
+    {
+        lli how_many_nodes_in_level = 2, current_index = 1;
+        BTree *root = max_heap_arr.size() != 0 ? BTree::createInstance(max_heap_arr[0]) : NULL;
+
+        std::vector<BTree*> previous_level;
+        std::vector<BTree*> level;
+        previous_level.push_back(root);
+        while (how_many_nodes_in_level < max_heap_arr.size())
+        {
+            for (lli i=current_index; i<how_many_nodes_in_level + current_index && i<max_heap_arr.size(); i++)
+            {
+                BTree *t = BTree::createInstance(max_heap_arr[i]);
+                level.push_back(t);
+            }
+
+            lli i = 0;
+            for (auto node : previous_level)
+                if (i + 1 < level.size())
+                {
+                    node->n->left = level.at(i++)->n;
+                    node->n->right = level.at(i++)->n;
+                }
+
+            previous_level = level;
+            level.clear();
+            current_index += how_many_nodes_in_level;
+            how_many_nodes_in_level *= 2;
+        }
+
+        root->draw_tree(root->n);
     }
 
     unsigned long int size() const
