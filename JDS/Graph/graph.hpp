@@ -4,6 +4,7 @@ class Graph
 {
 private:
     typedef long long int lli;
+
 public:
     struct Node
     {
@@ -14,10 +15,10 @@ public:
     struct AdjacencyList
     {
         Node* head;
-    }
+    };
 
     lli V;
-    AdjacencyList array;
+    AdjacencyList* array;
 
     Node* create_node(lli dest)
     {
@@ -38,5 +39,16 @@ public:
             g->array[i].head = NULL;
 
         return g;
+    }
+
+    void add_edge(Graph* g, lli source, lli dest)
+    {
+        Node* n = create_node(dest);
+        n->next = g->array[source].head;
+        g->array[source].head = n;
+
+        n = create_node(source);
+        n->next = g->array[dest].head;
+        g->array[dest].head = n;
     }
 };
