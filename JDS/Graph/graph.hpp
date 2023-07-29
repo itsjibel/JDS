@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <memory>
 
 class Graph
 {
@@ -8,65 +10,46 @@ private:
     struct Node
     {
         lli dest;
-        Node* next;
+        std::unique_ptr<Node> next;
     };
 
     struct AdjacencyList
     {
-        Node* head;
+        std::unique_ptr<Node> head;
     };
 
-    Node* create_node(lli dest)
-    {
-        Node* n = new Node;
-        n->dest = dest;
-        n->next = NULL;
-        return n;
-    }
-
     lli value;
-    AdjacencyList* array;
+    std::vector<AdjacencyList> array;
 
 public:
-    Graph* create_graph(lli value)
-    {
-        Graph* g = new Graph;
-
-        g->value = value;
-        g->array = (AdjacencyList*) malloc(value * sizeof(AdjacencyList));
-
-        for (lli i=0; i<value; i++)
-            g->array[i].head = NULL;
-
-        return g;
-    }
+    Graph(lli value) : value(value), array(value) {}
 
     void add_edge(lli source, lli dest)
     {
-        Node* n = create_node(dest);
-        n->next = array[source].head;
-        array[source].head = n;
+        std::unique_ptr<Node> n = std::make_unique<Node>();
+        n->dest = dest;
+        n->next = std::move(array[source].head);
+        array[source].head = std::move(n);
 
-        n = create_node(source);
-        n->next = array[dest].head;
-        array[dest].head = n;
+        n = std::make_unique<Node>();
+        n->dest = source;
+        n->next = std::move(array[dest].head);
+        array[dest].head = std::move(n);
     }
 
     void display_graph()
     {
-        Node* p;
-
-        for (lli i=0; i<value; i++)
+        for (lli i = 0; i < value; i++)
         {
-            p = array[i].head;
-            std::cout<<" "<<i;
+            std::cout << " " << i;
 
+            Node* p = array[i].head.get();
             while (p)
             {
-                std::cout<<" -> "<<p->dest;
-                p = p->next;
+                std::cout << " -> " << p->dest;
+                p = p->next.get();
             }
-            std::cout<<std::endl;
+            std::cout << std::endl;
         }
     }
 };
