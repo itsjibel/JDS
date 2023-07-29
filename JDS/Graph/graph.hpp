@@ -41,14 +41,32 @@ public:
         return g;
     }
 
-    void add_edge(Graph* g, lli source, lli dest)
+    void add_edge(lli source, lli dest)
     {
         Node* n = create_node(dest);
-        n->next = g->array[source].head;
-        g->array[source].head = n;
+        n->next = array[source].head;
+        array[source].head = n;
 
         n = create_node(source);
-        n->next = g->array[dest].head;
-        g->array[dest].head = n;
+        n->next = array[dest].head;
+        array[dest].head = n;
+    }
+
+    void display_graph()
+    {
+        Node* p;
+
+        for (lli i=0; i<V; i++)
+        {
+            p = array[i].head;
+            std::cout<<std::endl<<" "<<i<<" ";
+
+            while (p)
+            {
+                std::cout<<" -> "<<p->dest;
+                p = p->next;
+            }
+            std::cout<<std::endl;
+        }
     }
 };
