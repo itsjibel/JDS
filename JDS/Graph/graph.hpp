@@ -5,7 +5,6 @@ class Graph
 private:
     typedef long long int lli;
 
-public:
     struct Node
     {
         lli dest;
@@ -17,9 +16,6 @@ public:
         Node* head;
     };
 
-    lli V;
-    AdjacencyList* array;
-
     Node* create_node(lli dest)
     {
         Node* n = new Node;
@@ -28,14 +24,18 @@ public:
         return n;
     }
 
-    Graph* create_graph(lli V)
+    lli value;
+    AdjacencyList* array;
+
+public:
+    Graph* create_graph(lli value)
     {
         Graph* g = new Graph;
 
-        g->V = V;
-        g->array = (AdjacencyList*) malloc(V * sizeof(AdjacencyList));
+        g->value = value;
+        g->array = (AdjacencyList*) malloc(value * sizeof(AdjacencyList));
 
-        for (lli i=0; i<V; i++)
+        for (lli i=0; i<value; i++)
             g->array[i].head = NULL;
 
         return g;
@@ -56,10 +56,10 @@ public:
     {
         Node* p;
 
-        for (lli i=0; i<V; i++)
+        for (lli i=0; i<value; i++)
         {
             p = array[i].head;
-            std::cout<<std::endl<<" "<<i<<" ";
+            std::cout<<" "<<i;
 
             while (p)
             {
