@@ -9,6 +9,7 @@ int main()
     myGraph.add_edge(2, 3);
 
     myGraph.display_graph();
+    myGraph.BFS(0);
 
     return 0;
 }

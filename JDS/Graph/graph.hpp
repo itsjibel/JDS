@@ -1,6 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include "../Queue/Circular-Queue/circular-queue.hpp"
+#include <queue>
+#include <algorithm>
 
 class Graph
 {
@@ -35,6 +38,47 @@ public:
         n->dest = source;
         n->next = std::move(array[dest].head);
         array[dest].head = std::move(n);
+    }
+
+    void BFS(lli source)
+    {
+        std::vector<bool> visited(value, false);
+        CQueue<lli> q(12);
+
+        visited[source] = true;
+        q.push(source);
+
+        while (!q.empty())
+        {
+            lli node = q.front();
+            std::cout << node << " ";
+            q.pop();
+
+            // Store adjacent nodes in a vector
+            std::vector<lli> neighbors;
+            Node* p = array[node].head.get();
+            while (p)
+            {
+                lli neighbor = p->dest;
+                if (!visited[neighbor])
+                {
+                    visited[neighbor] = true;
+                    neighbors.push_back(neighbor);
+                }
+                p = p->next.get();
+            }
+
+            // Sort the neighbors
+            std::sort(neighbors.begin(), neighbors.end());
+
+            // Enqueue sorted neighbors into the queue
+            for (lli neighbor : neighbors)
+            {
+                if (!q.push(neighbor)) // Handle the return value of push()
+                    break;
+            }
+        }
+        std::cout << std::endl;
     }
 
     void display_graph()
