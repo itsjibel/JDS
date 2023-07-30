@@ -76,8 +76,7 @@ public:
     {
         for (lli i=0; i<V; i++)
         {
-            std::cout<<" "<<i;
-
+            std::cout<<i;
             Node* p = array[i].head.get();
             while (p)
             {

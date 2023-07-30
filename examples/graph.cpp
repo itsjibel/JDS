@@ -8,7 +8,9 @@ int main()
     myGraph.add_edge(1, 2);
     myGraph.add_edge(2, 3);
 
+    std::cout<<"Graph:"<<std::endl;
     myGraph.display_graph();
+    std::cout<<"BFS: ";
     myGraph.BFS(0);
 
     return 0;
