@@ -35,25 +35,22 @@ template <typename T> class CQueue
         {
             if (full())
                 return false;
-            if (_front == _capacity - 1 && _rear != 0)
-            {
-                _front = 0;
-                queue[_front++] = val;
-                _size++;
-            } else if (_front < _capacity && (_front != _rear || size() == 0)) {
-                queue[_front] = val;
-                _front = _front < _capacity - 1 ? _front + 1 : _front;
-                _size++;
-            }
+
+            queue[_rear] = val;
+            _rear = (_rear + 1) % _capacity;
+            _size++;
             return true;
         }
 
         T pop()
         {
             if (empty())
-                return false;
+                return -1;
+
+            T val = queue[_front];
+            _front = (_front + 1) % _capacity;
             _size--;
-            return queue[_rear++];
+            return val;
         }
 
         T at(unsigned long long int i) const
