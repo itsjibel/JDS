@@ -2,17 +2,17 @@ template <typename T> class Queue
 {
     private:
         T *queue;
-        long long int front;
-        long long int rear;
+        long long int _front;
+        long long int _rear;
         long long int _size;
-        unsigned long long int capacity;
+        unsigned long long int _capacity;
 
     public:
-        Queue(unsigned long long int c) : capacity{c}
+        Queue(unsigned long long int c) : _capacity{c}
         {
-            queue = new T[capacity];
-            front=0;
-            rear=0;
+            queue = new T[_capacity];
+            _front=0;
+            _rear=0;
             _size=0;
         }
 
@@ -21,31 +21,33 @@ template <typename T> class Queue
             delete[] queue;
         }
 
-        bool is_empty() const
+        bool empty() const
         {
             return _size == 0;
         }
 
-        bool is_full() const
+        bool full() const
         {
-            return _size == capacity;
+            return _size == _capacity;
         }
 
         bool add(T val)
         {
-            if (is_full() || front == capacity)
+            if (full() || _front == _capacity)
                 return false;
-            queue[front++] = val;
+            queue[_front] = val;
+            _front = _front < _capacity - 1 ? _front + 1 : _front;
             _size++;
             return true;
         }
 
         T del()
         {
-            if (is_empty())
+            if (empty())
                 return queue[0];
             _size--;
-            return queue[rear++];
+            _front--;
+            return queue[_rear++];
         }
 
         T at(unsigned long long int i) const
@@ -58,10 +60,25 @@ template <typename T> class Queue
             return _size;
         }
 
+        unsigned long long int capacity() const
+        {
+            return _capacity;
+        }
+
+        T front() const
+        {
+            return queue[_front];
+        }
+
+        T rear() const
+        {
+            return queue[_rear];
+        }
+
         void clear()
         {
-            _size = rear = front = 0;
-            for (int i=0; i<capacity; i++)
+            _size = _rear = _front = 0;
+            for (int i=0; i<_capacity; i++)
                 queue[i] = 0;
         }
 };
