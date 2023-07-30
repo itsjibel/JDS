@@ -2,17 +2,17 @@ template <typename T> class CQueue
 {
     private:
         T *queue;
-        long long int front;
-        long long int rear;
+        long long int _front;
+        long long int _rear;
         long long int _size;
-        unsigned long long int capacity;
+        unsigned long long int _capacity;
 
     public:
-        CQueue(unsigned long long int c) : capacity{c}
+        CQueue(unsigned long long int c) : _capacity{c}
         {
-            queue = new T[capacity];
-            front=0;
-            rear=0;
+            queue = new T[_capacity];
+            _front=0;
+            _rear=0;
             _size=0;
         }
 
@@ -21,39 +21,39 @@ template <typename T> class CQueue
             delete[] queue;
         }
 
-        bool is_empty() const
+        bool empty() const
         {
             return _size == 0;
         }
 
-        bool is_full() const
+        bool full() const
         {
-            return _size == capacity;
+            return _size == _capacity;
         }
 
         bool add(T val)
         {
-            if (is_full())
+            if (full())
                 return false;
-            if (front < capacity)
+            if (_front == _capacity - 1 && _rear != 0)
             {
-                queue[front++] = val;
+                _front = 0;
+                queue[_front++] = val;
                 _size++;
-            } else {
-                front = 0;
-                queue[front++] = val;
+            } else if (_front < _capacity && (_front != _rear || size() == 0)) {
+                queue[_front] = val;
+                _front = _front < _capacity - 1 ? _front + 1 : _front;
                 _size++;
             }
             return true;
         }
 
-        bool del()
+        T del()
         {
-            if (is_empty())
+            if (empty())
                 return false;
-            queue[rear++] = 0;
             _size--;
-            return true;
+            return queue[_rear++];
         }
 
         T at(unsigned long long int i) const
@@ -63,13 +63,38 @@ template <typename T> class CQueue
 
         unsigned long long int size() const
         {
-            return capacity;
+            return _size;
+        }
+
+        unsigned long long int capacity() const
+        {
+            return _capacity;
+        }
+
+        T front() const
+        {
+            return queue[_front];
+        }
+
+        T rear() const
+        {
+            return queue[_rear];
+        }
+
+        unsigned long long int get_front() const
+        {
+            return _front;
+        }
+
+        unsigned long long int get_rear() const
+        {
+            return _rear;
         }
 
         void clear()
         {
-            _size = rear = front = 0;
-            for (int i=0; i<capacity; i++)
+            _size = _rear = _front = 0;
+            for (int i=0; i<_capacity; i++)
                 queue[i] = 0;
         }
 };

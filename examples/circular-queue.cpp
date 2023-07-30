@@ -3,12 +3,21 @@
 
 int main()
 {
-    CQueue<int> myQueue(5);
-    for (int i=1; i<=myQueue.size(); i++)
-        myQueue.add(i);
-    myQueue.del();
-    myQueue.add(6);
-    for (int i=0; i<myQueue.size(); i++)
-        std::cout<<myQueue.at(i)<<'\t';
+    CQueue<int> myCQueue(5);
+    for (int i=0; i<7; i++)
+        myCQueue.add(i);
+
+    myCQueue.del();
+    myCQueue.del();
+
+    myCQueue.add(5);
+    myCQueue.add(6);
+
+    std::cout<<"Circular queue: ";
+    for (int i=0; i<myCQueue.capacity(); i++)
+        std::cout<<myCQueue.at(i)<<'\t';
+
+    std::cout<<std::endl<<"Front: "<<myCQueue.get_front()<<std::endl;
+    std::cout<<"Rear: "<<myCQueue.get_rear()<<std::endl;
     return 0;
 }
