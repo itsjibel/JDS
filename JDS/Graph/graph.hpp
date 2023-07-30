@@ -2,8 +2,6 @@
 #include <vector>
 #include <memory>
 #include "../Queue/Circular-Queue/circular-queue.hpp"
-#include <queue>
-#include <algorithm>
 
 class Graph
 {
@@ -21,11 +19,11 @@ private:
         std::unique_ptr<Node> head;
     };
 
-    lli value;
+    lli V;
     std::vector<AdjacencyList> array;
 
 public:
-    Graph(lli value) : value(value), array(value) {}
+    Graph(lli V) : V(V), array(V) {}
 
     void add_edge(lli source, lli dest)
     {
@@ -42,8 +40,8 @@ public:
 
     void BFS(lli source)
     {
-        std::vector<bool> visited(value, false);
-        CQueue<lli> q(12);
+        std::vector<bool> visited(V, false);
+        CQueue<lli> q(V);
 
         visited[source] = true;
         q.push(source);
@@ -51,10 +49,9 @@ public:
         while (!q.empty())
         {
             lli node = q.front();
-            std::cout << node << " ";
+            std::cout<<node<<" ";
             q.pop();
 
-            // Store adjacent nodes in a vector
             std::vector<lli> neighbors;
             Node* p = array[node].head.get();
             while (p)
@@ -68,32 +65,26 @@ public:
                 p = p->next.get();
             }
 
-            // Sort the neighbors
-            std::sort(neighbors.begin(), neighbors.end());
-
-            // Enqueue sorted neighbors into the queue
             for (lli neighbor : neighbors)
-            {
-                if (!q.push(neighbor)) // Handle the return value of push()
+                if (!q.push(neighbor))
                     break;
-            }
         }
-        std::cout << std::endl;
+        std::cout<<std::endl;
     }
 
     void display_graph()
     {
-        for (lli i = 0; i < value; i++)
+        for (lli i=0; i<V; i++)
         {
-            std::cout << " " << i;
+            std::cout<<" "<<i;
 
             Node* p = array[i].head.get();
             while (p)
             {
-                std::cout << " -> " << p->dest;
+                std::cout<<" -> "<<p->dest;
                 p = p->next.get();
             }
-            std::cout << std::endl;
+            std::cout<<std::endl;
         }
     }
 };
