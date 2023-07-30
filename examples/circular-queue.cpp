@@ -5,13 +5,13 @@ int main()
 {
     CQueue<int> myCQueue(5);
     for (int i=0; i<7; i++)
-        myCQueue.add(i);
+        myCQueue.push(i);
 
-    myCQueue.del();
-    myCQueue.del();
+    myCQueue.pop();
+    myCQueue.pop();
 
-    myCQueue.add(5);
-    myCQueue.add(6);
+    myCQueue.push(5);
+    myCQueue.push(6);
 
     std::cout<<"Circular queue: ";
     for (int i=0; i<myCQueue.capacity(); i++)

@@ -5,8 +5,8 @@ int main()
 {
     Queue<int> myQueue(5);
     for (int i=0; i<myQueue.capacity(); i++)
-        myQueue.add(i);
-    myQueue.del();
+        myQueue.push(i);
+    myQueue.pop();
 
     std::cout<<"Queue: ";
     for (int i=myQueue.get_rear(); i<=myQueue.get_front(); i++)

@@ -31,7 +31,7 @@ template <typename T> class CQueue
             return _size == _capacity;
         }
 
-        bool add(T val)
+        bool push(T val)
         {
             if (full())
                 return false;
@@ -48,7 +48,7 @@ template <typename T> class CQueue
             return true;
         }
 
-        T del()
+        T pop()
         {
             if (empty())
                 return false;

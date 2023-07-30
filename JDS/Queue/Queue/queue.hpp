@@ -31,7 +31,7 @@ template <typename T> class Queue
             return _size == _capacity;
         }
 
-        bool add(T val)
+        bool push(T val)
         {
             if (full() || _front == _capacity)
                 return false;
@@ -41,7 +41,7 @@ template <typename T> class Queue
             return true;
         }
 
-        T del()
+        T pop()
         {
             if (empty())
                 return queue[0];
