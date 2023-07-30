@@ -46,7 +46,6 @@ template <typename T> class Queue
             if (empty())
                 return queue[0];
             _size--;
-            _front--;
             return queue[_rear++];
         }
 
@@ -73,6 +72,16 @@ template <typename T> class Queue
         T rear() const
         {
             return queue[_rear];
+        }
+
+        unsigned long long int get_front() const
+        {
+            return _front;
+        }
+
+        unsigned long long int get_rear() const
+        {
+            return _rear;
         }
 
         void clear()

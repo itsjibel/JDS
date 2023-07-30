@@ -9,7 +9,7 @@ int main()
     myQueue.del();
 
     std::cout<<"Queue: ";
-    for (int i=0; i<myQueue.size(); i++)
+    for (int i=myQueue.get_rear(); i<=myQueue.get_front(); i++)
         std::cout<<myQueue.at(i)<<'\t';
 
     std::cout<<std::endl<<"Front: "<<myQueue.front()<<std::endl;
