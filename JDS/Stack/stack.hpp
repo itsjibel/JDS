@@ -4,14 +4,14 @@ template <typename T> class Stack
 {
     private:
         T *stack;
-        long long int top;
+        long long int _top;
         unsigned long long int capacity;
 
     public:
         Stack (unsigned long long int c) : capacity{c}
         {
             stack = new T[capacity];
-            top = -1;
+            _top = -1;
         }
 
         ~Stack()
@@ -19,25 +19,25 @@ template <typename T> class Stack
             delete[] stack;
         }
 
-        bool is_empty() const
+        bool empty() const
         {
-            return top == -1;
+            return _top == -1;
         }
 
-        bool is_full() const
+        bool full() const
         {
-            return top == capacity;
+            return _top == capacity;
         }
 
         T push(T val)
         {
-            return stack[++top] = val;
+            return stack[++_top] = val;
         }
 
         T pull()
         {
-            if (!is_empty())
-                return stack[top--];
+            if (!empty())
+                return stack[_top--];
             return 0;
         }
 
@@ -46,9 +46,9 @@ template <typename T> class Stack
             return stack[i];
         }
 
-        T at_top() const
+        T top() const
         {
-            return stack[top];
+            return stack[_top];
         }
 
         unsigned long long int size() const
@@ -58,14 +58,14 @@ template <typename T> class Stack
 
         void clear()
         {
-            top = -1;
+            _top = -1;
             for (int i=0; i<capacity; i++)
                 stack[i] = 0;
         }
 
         long long int top_val()
         {
-            return top;
+            return _top;
         }
 
 };
@@ -108,24 +108,24 @@ namespace stack
             if (ch == '(')
                 st.push('(');
             else if (ch == ')') {
-                while (st.at_top() != '(')
+                while (st.top() != '(')
                 {
-                    ans += st.at_top();
+                    ans += st.top();
                     st.pull();
                 }
                 st.pull();
             } else {
-                while (!st.is_empty() && prec(s[i]) <= prec(st.at_top())) {
-                    ans += st.at_top();
+                while (!st.empty() && prec(s[i]) <= prec(st.top())) {
+                    ans += st.top();
                     st.pull();
                 }
                 st.push(ch);
             }
         }
 
-        while (!st.is_empty())
+        while (!st.empty())
         {
-            ans += st.at_top();
+            ans += st.top();
             st.pull();
         }
         return ans;
