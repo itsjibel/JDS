@@ -49,9 +49,8 @@ public:
 
         while (!q.empty())
         {
-            lli node = q.front();
-            std::cout << node << " ";
-            q.pop();
+            lli node = q.pop();
+            std::cout<<node<<" ";
 
             std::vector<lli> neighbors;
             Node* p = array[node].head.get();
@@ -70,7 +69,7 @@ public:
                 if (!q.push(neighbor))
                     break;
         }
-        std::cout << std::endl;
+        std::cout<<std::endl;
     }
 
     void display_graph()
@@ -84,7 +83,7 @@ public:
                 std::cout << " -> " << p->dest;
                 p = p->next.get();
             }
-            std::cout << std::endl;
+            std::cout<<std::endl;
         }
     }
 
@@ -92,7 +91,7 @@ public:
     {
         std::vector<bool> visited(V, false);
         DFSUtil(source, visited);
-        std::cout << std::endl;
+        std::cout<<std::endl;
     }
 
     void shortest_path(lli source, lli dest)
