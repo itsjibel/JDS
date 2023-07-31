@@ -49,7 +49,7 @@ public:
         while (!q.empty())
         {
             lli node = q.front();
-            std::cout<<node<<" ";
+            std::cout << node << " ";
             q.pop();
 
             std::vector<lli> neighbors;
@@ -69,21 +69,46 @@ public:
                 if (!q.push(neighbor))
                     break;
         }
-        std::cout<<std::endl;
+        std::cout << std::endl;
     }
 
     void display_graph()
     {
-        for (lli i=0; i<V; i++)
+        for (lli i = 0; i < V; i++)
         {
-            std::cout<<i;
+            std::cout << i;
             Node* p = array[i].head.get();
             while (p)
             {
-                std::cout<<" -> "<<p->dest;
+                std::cout << " -> " << p->dest;
                 p = p->next.get();
             }
-            std::cout<<std::endl;
+            std::cout << std::endl;
+        }
+    }
+
+    void DFS(lli source)
+    {
+        std::vector<bool> visited(V, false);
+        DFSUtil(source, visited);
+        std::cout << std::endl;
+    }
+
+private:
+    void DFSUtil(lli node, std::vector<bool>& visited)
+    {
+        visited[node] = true;
+        std::cout << node << " ";
+
+        Node* p = array[node].head.get();
+        while (p)
+        {
+            lli neighbor = p->dest;
+            if (!visited[neighbor])
+            {
+                DFSUtil(neighbor, visited);
+            }
+            p = p->next.get();
         }
     }
 };

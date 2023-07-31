@@ -10,8 +10,12 @@ int main()
 
     std::cout<<"Graph:"<<std::endl;
     myGraph.display_graph();
+
     std::cout<<"BFS: ";
     myGraph.BFS(0);
+
+    std::cout<<"DFS: ";
+    myGraph.DFS(0);
 
     return 0;
 }
