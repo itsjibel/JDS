@@ -2,6 +2,7 @@
 #include <vector>
 #include <memory>
 #include "../Queue/Circular-Queue/circular-queue.hpp"
+#include "../Stack/stack.hpp"
 
 class Graph
 {
@@ -94,6 +95,60 @@ public:
         std::cout << std::endl;
     }
 
+    void shortest_path(lli source, lli dest)
+    {
+        std::vector<bool> visited(V, false);
+        std::vector<lli> parent(V, -1);
+        CQueue<lli> q(V);
+
+        visited[source] = true;
+        q.push(source);
+
+        while (!q.empty())
+        {
+            lli node = q.front();
+            q.pop();
+
+            Node* p = array[node].head.get();
+            while (p)
+            {
+                lli neighbor = p->dest;
+                if (!visited[neighbor])
+                {
+                    visited[neighbor] = true;
+                    parent[neighbor] = node;
+                    q.push(neighbor);
+                }
+                p = p->next.get();
+            }
+        }
+
+        // Backtrack from destination to source and print the path
+        if (!visited[dest])
+        {
+            std::cout << "No path from " << source << " to " << dest << " exists." << std::endl;
+            return;
+        }
+
+        std::cout << "Shortest path from " << source << " to " << dest << ": ";
+        Stack<lli> path(V);
+        lli current = dest;
+        while (current != -1)
+        {
+            path.push(current);
+            current = parent[current];
+        }
+
+        while (!path.empty())
+        {
+            std::cout << path.top();
+            path.pop();
+            if (!path.empty())
+                std::cout << " -> ";
+        }
+        std::cout << std::endl;
+    }
+
 private:
     void DFSUtil(lli node, std::vector<bool>& visited)
     {
@@ -105,9 +160,8 @@ private:
         {
             lli neighbor = p->dest;
             if (!visited[neighbor])
-            {
                 DFSUtil(neighbor, visited);
-            }
+
             p = p->next.get();
         }
     }
