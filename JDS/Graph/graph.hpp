@@ -106,8 +106,7 @@ public:
 
         while (!q.empty())
         {
-            lli node = q.front();
-            q.pop();
+            lli node = q.pop();
 
             Node* p = array[node].head.get();
             while (p)
@@ -123,14 +122,13 @@ public:
             }
         }
 
-        // Backtrack from destination to source and print the path
         if (!visited[dest])
         {
-            std::cout << "No path from " << source << " to " << dest << " exists." << std::endl;
+            std::cout<<"No path from "<<source<<" to "<<dest<<" exists."<<std::endl;
             return;
         }
 
-        std::cout << "Shortest path from " << source << " to " << dest << ": ";
+        std::cout<<"Shortest path from "<<source<<" to "<<dest<<": ";
         Stack<lli> path(V);
         lli current = dest;
         while (current != -1)
@@ -140,20 +138,16 @@ public:
         }
 
         while (!path.empty())
-        {
-            std::cout << path.top();
-            path.pop();
-            if (!path.empty())
-                std::cout << " -> ";
-        }
-        std::cout << std::endl;
+            std::cout<<path.pop()<<(!path.empty() ? " -> " : "");
+
+        std::cout<<std::endl;
     }
 
 private:
     void DFSUtil(lli node, std::vector<bool>& visited)
     {
         visited[node] = true;
-        std::cout << node << " ";
+        std::cout<<node<<" ";
 
         Node* p = array[node].head.get();
         while (p)

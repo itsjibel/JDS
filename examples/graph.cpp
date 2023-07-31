@@ -17,5 +17,7 @@ int main()
     std::cout<<"DFS: ";
     myGraph.DFS(0);
 
+    myGraph.shortest_path(0, 3);
+
     return 0;
 }
