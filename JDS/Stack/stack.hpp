@@ -34,7 +34,7 @@ template <typename T> class Stack
             return stack[++_top] = val;
         }
 
-        T pull()
+        T pop()
         {
             if (!empty())
                 return stack[_top--];
@@ -111,13 +111,13 @@ namespace stack
                 while (st.top() != '(')
                 {
                     ans += st.top();
-                    st.pull();
+                    st.pop();
                 }
-                st.pull();
+                st.pop();
             } else {
                 while (!st.empty() && prec(s[i]) <= prec(st.top())) {
                     ans += st.top();
-                    st.pull();
+                    st.pop();
                 }
                 st.push(ch);
             }
@@ -126,7 +126,7 @@ namespace stack
         while (!st.empty())
         {
             ans += st.top();
-            st.pull();
+            st.pop();
         }
         return ans;
     }
@@ -145,8 +145,8 @@ namespace stack
 
             if (s[i] == '+' || s[i] == '-' || s[i] == '*' || s[i] == '/')
             {
-                a = st.pull();
-                b = st.pull();
+                a = st.pop();
+                b = st.pop();
                 switch (s[i])
                 {
                     case '+': st.push(b + a); break;
@@ -156,6 +156,6 @@ namespace stack
                 }
             }
         }
-        return st.pull();
+        return st.pop();
     }
 }
