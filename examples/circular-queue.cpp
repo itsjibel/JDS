@@ -1,4 +1,4 @@
-#include "../JDS/Queue/Circular-Queue/circular-queue.hpp" 
+#include "../JDS/Queue/circular-queue.hpp" 
 #include <iostream>
 
 int main()

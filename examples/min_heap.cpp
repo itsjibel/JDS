@@ -1,4 +1,4 @@
-#include "../JDS/Tree/Heap-Tree/Min-Heap/min_heap.hpp"
+#include "../JDS/Tree/min_heap.hpp"
 #include <iostream>
 
 int main()

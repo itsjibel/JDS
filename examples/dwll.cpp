@@ -1,4 +1,4 @@
-#include "../JDS/Linked-List/double-way-linked-list/DWLL.hpp" 
+#include "../JDS/Linked-List/DWLL.hpp" 
 #include <iostream>
 
 int main()

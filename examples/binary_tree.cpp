@@ -1,4 +1,4 @@
-#include "../JDS/Tree/Binary-Tree/binary_tree.hpp"
+#include "../JDS/Tree/binary_tree.hpp"
 
 int main()
 {

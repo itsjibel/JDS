@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <math.h>
-#include "../../Queue/Queue/queue.hpp"
+#include "../Queue/queue.hpp"
 
 struct Node
 {
@@ -119,10 +119,10 @@ public:
         do
         {
             if (t->left)
-                q.add(t->left);
+                q.push(t->left);
             if (t->right)
-                q.add(t->right);
-            t = q.del();
+                q.push(t->right);
+            t = q.pop();
             std::cout<<t->data<<" ";
         } while (q.size() != 0);
     }
@@ -143,17 +143,17 @@ public:
 
         Node* t;
         Queue<Node*> q(numof_nodes(r));
-        q.add(r);
+        q.push(r);
 
         bool flag = false;
         while (q.size() != 0)
         {
-            t = q.del();
+            t = q.pop();
             if (t->left)
             {
                 if (flag == true)
                     return false;
-                q.add(t->left);
+                q.push(t->left);
             } else
                 flag = true;
             
@@ -161,7 +161,7 @@ public:
             {
                 if (flag == true)
                     return false;
-                q.add(t->right);
+                q.push(t->right);
             } else
                 flag = true;
         }

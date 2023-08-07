@@ -1,4 +1,4 @@
-#include "../../Binary-Tree/binary_tree.hpp"
+#include "binary_tree.hpp"
 
 class MaxHeap
 {

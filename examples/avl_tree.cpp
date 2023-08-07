@@ -1,4 +1,4 @@
-#include "../JDS/Tree/AVL-Tree/avl_tree.hpp"
+#include "../JDS/Tree/avl_tree.hpp"
 
 int main()
 {

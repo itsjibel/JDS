@@ -1,4 +1,4 @@
-#include "../JDS/Tree/Heap-Tree/Max-Heap/max_heap.hpp"
+#include "../JDS/Tree/max_heap.hpp"
 #include <iostream>
 
 int main()

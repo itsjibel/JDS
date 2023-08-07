@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
-#include "../Queue/Circular-Queue/circular-queue.hpp"
+#include "../Queue/circular-queue.hpp"
 #include "../Stack/stack.hpp"
 
 class Graph

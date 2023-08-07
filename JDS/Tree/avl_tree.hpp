@@ -1,4 +1,4 @@
-#include "../Binary-Search-Tree/binary_search_tree.hpp"
+#include "binary_search_tree.hpp"
 
 class AVLTree: public BSTree
 {

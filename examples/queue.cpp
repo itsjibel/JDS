@@ -1,4 +1,4 @@
-#include "../JDS/Queue/Queue/queue.hpp"
+#include "../JDS/Queue/queue.hpp"
 #include <iostream>
 
 int main()

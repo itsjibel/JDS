@@ -1,4 +1,4 @@
-#include "../JDS/Tree/Binary-Search-Tree/binary_search_tree.hpp"
+#include "../JDS/Tree/binary_search_tree.hpp"
 
 int main()
 {

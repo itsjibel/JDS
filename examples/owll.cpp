@@ -1,4 +1,4 @@
-#include "../JDS/Linked-List/one-way-linked-list/OWLL.hpp" 
+#include "../JDS/Linked-List/OWLL.hpp" 
 #include <iostream>
 
 int main()

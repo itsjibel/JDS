@@ -1,4 +1,4 @@
-#include "../JDS/Linked-List/circular-one-way-linked-list/COWLL.hpp" 
+#include "../JDS/Linked-List/COWLL.hpp" 
 #include <iostream>
 
 int main()
