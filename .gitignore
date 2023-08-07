@@ -11,4 +11,5 @@ examples/avl_tree
 examples/min_heap
 examples/max_heap
 examples/graph
+examples/bubble_sort
 .vscode/
