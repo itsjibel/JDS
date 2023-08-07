@@ -13,4 +13,5 @@ examples/max_heap
 examples/graph
 examples/bubble_sort
 examples/selection_sort
+examples/insertion_sort
 .vscode/
