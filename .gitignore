@@ -12,4 +12,5 @@ examples/min_heap
 examples/max_heap
 examples/graph
 examples/bubble_sort
+examples/selection_sort
 .vscode/
