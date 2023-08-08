@@ -15,4 +15,5 @@ examples/bubble_sort
 examples/selection_sort
 examples/insertion_sort
 examples/merge_sort
+examples/quick_sort
 .vscode/
