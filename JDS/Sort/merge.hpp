@@ -1,8 +1,6 @@
-#include <memory>
 #include <algorithm>
 
-void merge(int* arr, const int start, const int middle, const int end)
-{
+void merge(int* arr, const int start, const int middle, const int end) {
     int leftSize = middle - start + 1, rightSize = end - middle;
     int left[leftSize], right[rightSize];
 
@@ -22,10 +20,8 @@ void merge(int* arr, const int start, const int middle, const int end)
     while (j < rightSize) arr[resultIndex++] = right[j++];
 }
 
-void mergeSort(int* arr, int start, int end)
-{
-    if (start < end)
-    {
+void mergeSort(int* arr, int start, int end) {
+    if (start < end) {
         int middle = (start + end) / 2;
         mergeSort(arr, start, middle);
         mergeSort(arr, middle + 1, end);
