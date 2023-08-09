@@ -1,13 +1,13 @@
 #include <iostream>
 
-struct Node {
-    int data {0};
-    Node* next = nullptr;
-    Node(int data) : data(data) {}
-};
-
 class SeparateChaining {
 public:
+    struct Node {
+        int data {0};
+        Node* next = nullptr;
+        Node(int data) : data(data) {}
+    };
+
     int h(int key, int m)
     {
         return key % m;
