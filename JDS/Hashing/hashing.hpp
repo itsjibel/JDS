@@ -2,9 +2,8 @@
 
 struct Node {
     int data {0};
-    Node* next;
+    Node* next = nullptr;
     Node(int data) : data(data) {}
-    Node();
 };
 
 class SeparateChaining {
@@ -21,7 +20,7 @@ public:
         for (int i{0}; i<n; i++)
         {
             int hashResult = h(keys[i], m);
-            if (result[hashResult] != NULL)
+            if (result[hashResult] != nullptr)
             {
                 Node* temp = result[hashResult]->next;
                 result[hashResult]->next = new Node(keys[i]);

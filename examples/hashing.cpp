@@ -8,8 +8,8 @@ int main()
     Node** result = mySeparateChaining.separateChaining(keys, 10, m);
 
     for (int i=0; i<m-1; i++)
-        for (Node* itter = result[i]; itter != NULL; itter = itter->next)
-            std::cout<<itter->data<<(itter->next != NULL ? " -> " : "\n");
+        for (Node* itter = result[i]; itter != nullptr; itter = itter->next)
+            std::cout<<itter->data<<(itter->next != nullptr ? " -> " : "\n");
 
     mySeparateChaining.search(8, m, result);
 
