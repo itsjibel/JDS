@@ -1,6 +1,7 @@
 #include <iostream>
+#include <math.h>
 
-class SeparateChaining {
+class SeparateChainingHashing {
 public:
     struct Node {
         int data {0};
@@ -8,14 +9,16 @@ public:
         Node(int data) : data(data) {}
     };
 
-    int h(int key, int m)
+    virtual int h(int key, int m)
     {
         return key % m;
     }
 
-    Node** separateChaining(const int keys[], int n, int m)
+    Node** hash(const int keys[], int n, int m)
     {
         Node** result = new Node*[m];
+        for (int i{0}; i<m; i++)
+            result[i] = nullptr;
 
         for (int i{0}; i<n; i++)
         {
@@ -43,5 +46,14 @@ public:
             std::cout<<"'"<<key<<"' Found at chain "<<hashResult+1<<" and index "<<index<<std::endl;
         else
             std::cout<<"Not found in any chain"<<std::endl;
+    }
+};
+
+class MultiplicationHashing : public SeparateChainingHashing {
+public:
+    int h(int key, int m) override
+    {
+        double A = (sqrt(5) - 1) / 2;
+        return static_cast<int>(floor(m * fmod(key * A, 1.0)));
     }
 };
