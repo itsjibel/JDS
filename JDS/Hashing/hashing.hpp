@@ -9,7 +9,7 @@ public:
         Node(int data) : data(data) {}
     };
 
-    virtual int h(int key, int m)
+    virtual int h(const int key, const int m)
     {
         return key % m;
     }
@@ -34,7 +34,7 @@ public:
         return result;
     }
 
-    void search(int key, int m, Node** result)
+    void search(const int key, const int m, Node** result)
     {
         int hashResult = h(key, m);
         int index = 0;
@@ -51,9 +51,47 @@ public:
 
 class MultiplicationHashing : public SeparateChainingHashing {
 public:
-    int h(int key, int m) override
+    int h(const int key, const int m) override
     {
         double A = (sqrt(5) - 1) / 2;
         return static_cast<int>(floor(m * fmod(key * A, 1.0)));
+    }
+};
+
+class LinearHashing {
+public:
+    virtual int h(int key, int m, int i)
+    {
+        return (key % m + i) % m;
+    }
+
+    int* hash(const int keys[], int n, int m)
+    {
+        int* result = new int[m];
+        for (int i{0}; i<m; i++)
+            result[i] = -1;
+
+        for (int i=0; i<n; i++)
+        {
+            int j = 0;
+            int hashResult = h(keys[i], m, j);
+            while (result[hashResult] != -1)
+                hashResult = h(keys[i], m, j++);
+            result[hashResult] = keys[i];
+        }
+        return result;
+    }
+
+    void search(const int key, const int m, const int* result)
+    {
+        int i = 0;
+        int hashResult = h(key, m, i);
+        while (result[hashResult] != key && i < m)
+            hashResult = h(key, m, i++);
+
+        if (i == m && result[hashResult] != key)
+            std::cout<<"Not found"<<std::endl;
+        else
+            std::cout<<"'"<<key<<"' Found at index "<<hashResult<<std::endl;
     }
 };

@@ -25,5 +25,15 @@ int main()
     myMultiplicationHashing.search(43, m, result);
     delete[] result;
 
+    std::cout<<"----------------------------------------------------"<<std::endl;
+    LinearHashing myLinearHashing;
+    m = 10;
+    int* result2 = myLinearHashing.hash(keys, 10, m);
+    for (int i=0; i<10; i++)
+        std::cout<<result2[i]<<std::endl;
+
+    myLinearHashing.search(43, m, result2);
+    delete[] result2;
+
     return 0;
 }
