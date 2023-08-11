@@ -7,6 +7,7 @@ public:
         int data {0};
         Node* next = nullptr;
         Node(int data) : data(data) {}
+        Node(int data, Node* n) : data(data), next(n) {}
     };
 
     virtual int h(const int key, const int m)
@@ -24,11 +25,8 @@ public:
         {
             int hashResult = h(keys[i], m);
             if (result[hashResult] != nullptr)
-            {
-                Node* temp = result[hashResult]->next;
-                result[hashResult]->next = new Node(keys[i]);
-                result[hashResult]->next->next = temp;
-            } else
+                result[hashResult] = new Node(keys[i], result[hashResult]);
+            else
                 result[hashResult] = new Node(keys[i]);
         }
         return result;
